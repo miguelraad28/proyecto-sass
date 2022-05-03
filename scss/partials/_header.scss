@@ -1,0 +1,15 @@
+header{
+    nav{
+        background-color: white;
+        text-align: center;
+        padding: 25px;
+        a{
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+            &:hover{
+            color: blueviolet;
+            }
+        }
+    }
+}
