@@ -1,14 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
+.barra-superior {
+  background-color: black;
+  text-align: center;
+  padding: 8px 0; }
+  .barra-superior .texto-barra-superior {
+    min-height: 20px;
+    display: inline;
+    word-spacing: 0.5em;
+    margin: 0 30px;
+    font-weight: 400;
+    font-family: 'Open Sans';
+    color: white; }
+
+.span-logo {
+  background-color: white;
+  width: 100%;
+  justify-content: center;
+  display: flex; }
+  .span-logo .logo-top {
+    margin: 20px;
+    width: 280px; }
+  .span-logo .logo-top-index {
+    animation-name: logo-in;
+    animation-duration: 2s;
+    animation-iteration-count: ease-in; }
+
+@keyframes logo-in {
+  0% {
+    opacity: 0%; } }
+
+nav ul {
+  margin: 0 auto; }
+
+.color-propio {
+  background-color: #ff98c4;
+  color: black; }
+
+.color-submenu {
+  background-color: #ffc8e1; }
+
+.submenu {
+  border-radius: 0px;
+  animation-name: deploysubmenu;
+  animation-duration: 0.18s; }
+
+@keyframes deploysubmenu {
+  0% {
+    opacity: 0%; } }
+
+footer {
+  background-color: #d9548e;
+  width: 100%; }
+
+.grid-padre-footer {
+  font-family: 'Open Sans', sans-serif;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: auto;
+  width: 100%; }
+
+.grid-hijo-footer-left {
+  height: 175px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px; }
+  .grid-hijo-footer-left img {
+    height: 100%;
+    padding: 10px; }
+
+.grid-hijo-footer-right {
+  color: black;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 0.5rem;
+  padding-left: 20px;
+  text-decoration: none; }
+  .grid-hijo-footer-right h5 {
+    margin-top: 0.5rem; }
+  .grid-hijo-footer-right a {
+    color: black;
+    text-decoration: none; }
+
+.grid-hijo-footer-credits {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #121212;
+  padding: 10px;
+  color: blanchedalmond;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 100; }
+
+@media screen and (max-width: 1025px) {
+  .grid-hijo-footer-credits {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-flow: column; }
+  .grid-hijo-footer-credits p {
+    padding: 5px; } }
+
+@media screen and (max-width: 768px) {
+  .grid-padre-footer {
+    grid-template-columns: repeat(1, 100%);
+    grid-template-areas: "contacto" "data-fiscal" "creditos"; }
+  .grid-hijo-footer-left {
+    grid-area: data-fiscal;
+    justify-content: center;
+    padding: 0; }
+  .grid-hijo-footer-right {
+    grid-area: contacto;
+    text-align: center;
+    padding: 0; }
+  .grid-hijo-footer-credits {
+    grid-area: creditos; } }
+
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: normal; }
+
+p, ul {
   margin: 0;
   padding: 0; }
 
-header nav {
-  background-color: white;
+.body-index {
+  background-image: url("../images/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+body {
+  position: relative;
+  padding-bottom: calc(217px + 2em);
+  min-height: 100vh; }
+
+header, section a, .grid-contacto ul, footer, footer ul {
+  text-decoration: none;
+  list-style: none; }
+
+footer {
+  bottom: 0;
+  position: absolute; }
+
+.titulo-tienda-index {
+  font-size: calc(100% * 1.3);
+  font-family: "Asap Condensed";
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  padding: 25px; }
-  header nav a {
-    text-decoration: none;
-    font-weight: bold;
-    color: black; }
-    header nav a:hover {
-      color: blueviolet; }
+  margin: 0 20px; }
+
+.grid-categorias {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 300px));
+  justify-content: center;
+  margin: 0 20px; }
+
+.categoria img {
+  width: 100%;
+  border-radius: 12px;
+  transition: opacity 0.2s; }
+
+.categoria :hover {
+  opacity: 85%; }
+
+.titulo-categoria {
+  margin-top: 5px;
+  font-family: "Asap Condensed";
+  text-align: center;
+  color: black;
+  text-decoration: none;
+  font-size: calc(1rem + .3vw); }
+
+.titulo-categoria:hover {
+  text-decoration: underline; }
+
+.contenedor-boton-ver-mas {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0; }
+  .contenedor-boton-ver-mas button {
+    background-color: #c400f5;
+    font-weight: 500;
+    color: white; }
+  .contenedor-boton-ver-mas :focus {
+    background-color: #db8fee; }
+
+@media screen and (max-width: 1025px) {
+  body {
+    padding-bottom: calc(291px + 2em); } }
+
+@media screen and (max-width: 768px) {
+  body {
+    padding-bottom: calc(465px + 2em); } }

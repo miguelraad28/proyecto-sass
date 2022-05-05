@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    line-height: normal;
+}
+p, ul{
+    margin: 0;
+    padding: 0;
+}
+.body-index{
+    background-image: url("../images/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+body{
+    position:relative;
+    padding-bottom: calc(217px + 2em);
+    min-height: 100vh;
+}
+header, section a, .grid-contacto ul, footer, footer ul{
+    text-decoration: none;
+    list-style: none;
+}
+footer{
+    bottom: 0;
+    position: absolute;
+}
