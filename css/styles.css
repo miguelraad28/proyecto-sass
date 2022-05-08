@@ -62,21 +62,22 @@ footer {
 .grid-hijo-footer-left {
   height: 175px;
   display: flex;
+  flex-direction: row;
   justify-content: flex-end;
-  padding-right: 10px; }
+  margin: 0 15px;
+  align-items: center; }
   .grid-hijo-footer-left img {
-    height: 100%;
-    padding: 10px; }
+    height: 155px; }
 
 .grid-hijo-footer-right {
   color: black;
   display: flex;
   flex-flow: column nowrap;
-  margin-bottom: 0.5rem;
-  padding-left: 20px;
+  margin: 10px 15px;
   text-decoration: none; }
-  .grid-hijo-footer-right h5 {
-    margin-top: 0.5rem; }
+  .grid-hijo-footer-right h4 {
+    margin: 3px 0;
+    font-size: 1.3em; }
   .grid-hijo-footer-right a {
     color: black;
     text-decoration: none; }
@@ -90,30 +91,33 @@ footer {
   color: blanchedalmond;
   font-family: "Open Sans", sans-serif;
   font-weight: 100; }
+  .grid-hijo-footer-credits h5 {
+    font-weight: 100;
+    margin: 0;
+    font-size: 1em; }
 
 @media screen and (max-width: 1025px) {
   .grid-hijo-footer-credits {
     text-align: center;
-    height: 100%;
     display: flex;
-    flex-flow: column; }
-  .grid-hijo-footer-credits p {
-    padding: 5px; } }
+    flex-direction: column; }
+    .grid-hijo-footer-credits h5 {
+      padding: 5px; } }
 
 @media screen and (max-width: 768px) {
   .grid-padre-footer {
     grid-template-columns: repeat(1, 100%);
     grid-template-areas: "contacto" "data-fiscal" "creditos"; }
-  .grid-hijo-footer-left {
-    grid-area: data-fiscal;
-    justify-content: center;
-    padding: 0; }
-  .grid-hijo-footer-right {
-    grid-area: contacto;
-    text-align: center;
-    padding: 0; }
-  .grid-hijo-footer-credits {
-    grid-area: creditos; } }
+    .grid-padre-footer .grid-hijo-footer-left {
+      grid-area: data-fiscal;
+      justify-content: center;
+      padding: 0; }
+    .grid-padre-footer .grid-hijo-footer-right {
+      grid-area: contacto;
+      text-align: center;
+      padding: 0; }
+    .grid-padre-footer .grid-hijo-footer-credits {
+      grid-area: creditos; } }
 
 * {
   margin: 0;
@@ -143,20 +147,35 @@ footer {
   bottom: 0;
   position: absolute; }
 
+@media screen and (max-width: 1025px) {
+  body {
+    padding-bottom: calc(260px + 1em); } }
+
+@media screen and (max-width: 768px) {
+  body {
+    padding-bottom: calc(451px + 1em); } }
+
+@media screen and (max-width: 327px) {
+  body {
+    padding-bottom: calc(490px + 1em); } }
+
 .titulo-tienda-index {
-  font-size: calc(100% * 1.3);
-  font-family: "Asap Condensed";
+  font-family: "Asap Condensed", sans-serif;
+  font-size: calc(100% * 1.3vw);
   padding-top: 30px;
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   text-align: center;
   margin: 0 20px; }
+  .titulo-tienda-index :last-child {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 100; }
 
 .grid-categorias {
   display: grid;
-  gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(210px, 300px));
+  gap: 20px;
   justify-content: center;
   margin: 0 20px; }
 
@@ -164,20 +183,23 @@ footer {
   width: 100%;
   border-radius: 12px;
   transition: opacity 0.2s; }
+  .categoria img:hover {
+    opacity: 85%; }
 
-.categoria :hover {
-  opacity: 85%; }
+.categoria a:hover {
+  text-decoration: underline;
+  color: black; }
 
 .titulo-categoria {
   margin-top: 5px;
-  font-family: "Asap Condensed";
+  font-family: "Asap Condensed", sans-serif;
   text-align: center;
   color: black;
   text-decoration: none;
   font-size: calc(1rem + .3vw); }
-
-.titulo-categoria:hover {
-  text-decoration: underline; }
+  .titulo-categoria h3 {
+    margin-bottom: 0;
+    font-size: 1.35rem; }
 
 .contenedor-boton-ver-mas {
   display: flex;
@@ -190,10 +212,95 @@ footer {
   .contenedor-boton-ver-mas :focus {
     background-color: #db8fee; }
 
-@media screen and (max-width: 1025px) {
-  body {
-    padding-bottom: calc(291px + 2em); } }
+.main-productos {
+  display: grid;
+  margin: 0 auto;
+  max-width: 80vw; }
 
-@media screen and (max-width: 768px) {
-  body {
-    padding-bottom: calc(465px + 2em); } }
+.grid-buscador {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  margin: 40px 0; }
+  .grid-buscador .titulo-tienda-productos {
+    font-family: "Asap Condensed", sans-serif;
+    font-size: calc(100% * 1.3vw); }
+    .grid-buscador .titulo-tienda-productos :last-child {
+      font-family: "Open Sans", sans-serif;
+      font-weight: 100;
+      margin-bottom: 0.5em; }
+  .grid-buscador .buscador {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; }
+  .grid-buscador .color-boton-busqueda {
+    color: #932e4e;
+    border-color: #f373aa; }
+    .grid-buscador .color-boton-busqueda:focus {
+      background-color: #d9548e; }
+
+/* GRID PRODUCTOS --- */
+.grid-contenedor-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 2em;
+  justify-content: center; }
+  .grid-contenedor-productos .producto {
+    transition: transform 0.2s; }
+    .grid-contenedor-productos .producto img {
+      border-radius: 12px; }
+    .grid-contenedor-productos .producto:hover {
+      transform: scale(1.05); }
+  .grid-contenedor-productos .titulo-producto {
+    margin-top: 5px;
+    color: black;
+    text-decoration: none;
+    text-align: center; }
+    .grid-contenedor-productos .titulo-producto h3 {
+      font-family: "Asap Condensed", sans-serif;
+      margin-bottom: 0;
+      font-size: 1.35rem; }
+    .grid-contenedor-productos .titulo-producto :last-child {
+      font-family: "Open Sans", sans-serif;
+      font-weight: 100; }
+
+@media screen and (max-width: 875px) {
+  .titulo-tienda-productos {
+    text-align: center; }
+  .grid-buscador .buscador {
+    justify-content: center; } }
+
+.contenedor-info-paquete {
+  margin: 0 20px;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 800px));
+  justify-content: center; }
+  .contenedor-info-paquete a {
+    word-break: break-all; }
+
+.article-info-paquete {
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.2em;
+  line-height: calc(100% * 1.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+  .article-info-paquete h1 {
+    font-family: "Asap Condensed", sans-serif;
+    font-size: calc(100% * 1.3vw);
+    margin-bottom: 20px; }
+  .article-info-paquete span {
+    font-family: "Asap Condensed", sans-serif;
+    font-size: calc(100% * 1.3vw);
+    font-size: calc(1.375rem + 1.5vw);
+    margin: 20px 0; }
+
+.grid-contacto {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 90px;
+  margin: 50px auto;
+  justify-content: center; }
+  .grid-contacto img {
+    height: 100%; }

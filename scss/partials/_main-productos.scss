@@ -1,0 +1,67 @@
+@import "variables/variables";
+@import "../sass2/mixins";
+.main-productos{
+    display: grid;
+    margin: 0 auto;
+    max-width: 80vw;
+}
+.grid-buscador{
+    @include grid-buscador-productos;
+    margin: 40px 0;
+    .titulo-tienda-productos{
+        @include titulos-h1;
+        :last-child{
+            @include subtitulos-h2;
+            margin-bottom: 0.5em;
+        }
+    }
+    .buscador{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .color-boton-busqueda{
+        color: #932e4e;
+        border-color: #f373aa;
+        &:focus{
+            background-color: #d9548e;
+        }
+    }
+}
+    /* GRID PRODUCTOS --- */
+.grid-contenedor-productos{
+    @include grid-productos;
+    gap: 2em;
+    justify-content: center;
+    .producto{
+        transition: transform 0.2s;
+        img{
+            border-radius: $borde-img-productos;
+        }
+        &:hover{
+            transform: scale(1.05);
+        }
+    }
+    .titulo-producto{
+        margin-top: 5px;
+        color: black;
+        text-decoration: none;
+        text-align: center;
+        h3{
+            @include titulos-h3-productos;
+        }
+        :last-child{
+            @include precios-h3-productos;
+        }
+    }
+}
+@media screen and (max-width: 875px) {
+    .titulo-tienda-productos{
+        text-align: center;
+    }
+    .grid-buscador{
+        .buscador{
+            justify-content: center;
+        }
+    }
+}

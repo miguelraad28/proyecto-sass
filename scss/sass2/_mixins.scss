@@ -1,0 +1,38 @@
+@import "../variables/variables";
+@mixin grid-buscador-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+@mixin grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+@mixin grid-article-contacto{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 800px));
+    justify-content: center;
+}
+@mixin titulos-h1 {
+    font-family: $fuente-titulos;
+    font-size: calc(100% * 1.3vw);
+}
+@mixin subtitulos-h2 {
+    font-family: $fuente-descripciones;
+    font-weight: 100;
+}
+@mixin titulos-h3-productos{
+    font-family: $fuente-titulos;
+    margin-bottom: 0;
+    font-size: 1.35rem;
+}
+@mixin precios-h3-productos{
+    font-family: $fuente-descripciones;
+    font-weight: 100;
+}
+@mixin grid-favicon-contacto{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 90px;
+    margin: 50px auto;
+    justify-content: center;
+}

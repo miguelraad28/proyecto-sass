@@ -1,0 +1,33 @@
+@import "../sass2/mixins";
+.contenedor-info-paquete{
+    margin: 0 20px;
+    margin-top: 40px;
+    @include grid-article-contacto;
+    a{
+        word-break: break-all;
+    }
+}
+.article-info-paquete{
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.2em;
+    line-height: calc(100% * 1.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h1{
+        @include titulos-h1;
+        margin-bottom: 20px;
+    }
+    span{
+        @include titulos-h1;
+        font-size: calc(1.375rem + 1.5vw);
+        margin: 20px 0;
+    }
+}
+.grid-contacto{
+    @include grid-favicon-contacto;
+    img{
+        height: 100%;
+    }
+}

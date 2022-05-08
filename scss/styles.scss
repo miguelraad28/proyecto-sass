@@ -3,8 +3,11 @@
 @import "sass2/maps";
 @import "sass2/operaciones";
 @import "sass2/mixins";
-@import "partials/header";
-@import "partials/footer";
+@import "partials/componentes/header";
+@import "partials/componentes/footer";
 @import "partials/generales";
 @import "partials/main-index";
-@import "partials/media-queries"
+@import "partials/main-productos";
+@import "partials/main-tupaquete";
+@import "partials/main-contacto";
+@import "partials/main-micuenta";

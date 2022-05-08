@@ -27,3 +27,18 @@ footer{
     bottom: 0;
     position: absolute;
 }
+@media screen and (max-width: 1025px) {
+    body{
+        padding-bottom: calc(260px + 1em);
+    }
+}
+@media screen and (max-width: 768px) {
+    body{
+        padding-bottom: calc(451px + 1em);
+    }
+}
+@media screen and (max-width: 327px) {
+    body{
+        padding-bottom: calc(490px + 1em);
+    }
+}
