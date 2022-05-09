@@ -20,12 +20,8 @@
         align-items: center;
         justify-content: flex-end;
     }
-    .color-boton-busqueda{
-        color: #932e4e;
-        border-color: #f373aa;
-        &:focus{
-            background-color: #d9548e;
-        }
+    .boton-buscar-producto{
+        @include boton-accionar-rosa;
     }
 }
     /* GRID PRODUCTOS --- */

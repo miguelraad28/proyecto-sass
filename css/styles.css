@@ -4,6 +4,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
 .barra-superior {
   background-color: black;
   text-align: center;
@@ -124,6 +130,15 @@ footer {
     .grid-padre-footer .grid-hijo-footer-credits {
       grid-area: creditos; } }
 
+.grid-contacto {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 90px;
+  margin: 50px auto;
+  justify-content: center; }
+  .grid-contacto img {
+    height: 100%; }
+
 * {
   margin: 0;
   padding: 0;
@@ -237,11 +252,12 @@ footer {
     display: flex;
     align-items: center;
     justify-content: flex-end; }
-  .grid-buscador .color-boton-busqueda {
+  .grid-buscador .boton-buscar-producto {
     color: #932e4e;
     border-color: #f373aa; }
-    .grid-buscador .color-boton-busqueda:focus {
-      background-color: #d9548e; }
+    .grid-buscador .boton-buscar-producto:focus {
+      background-color: #d9548e;
+      color: black; }
 
 /* GRID PRODUCTOS --- */
 .grid-contenedor-productos {
@@ -301,11 +317,33 @@ footer {
     font-size: calc(1.375rem + 1.5vw);
     margin: 20px 0; }
 
-.grid-contacto {
+.grid-form-contacto {
+  background-color: white;
   display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: 90px;
-  margin: 50px auto;
-  justify-content: center; }
-  .grid-contacto img {
-    height: 100%; }
+  grid-template-columns: repeat(1, minmax(100px, 500px));
+  justify-content: center;
+  margin: 50px 20px;
+  gap: 10px; }
+  .grid-form-contacto h1 {
+    text-align: center; }
+  .grid-form-contacto .boton-enviar-form {
+    color: #932e4e;
+    border-color: #f373aa; }
+    .grid-form-contacto .boton-enviar-form:focus {
+      background-color: #d9548e;
+      color: black; }
+
+.iniciar-sesion {
+  text-align: center;
+  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(100px, 500px));
+  justify-content: center;
+  margin: 50px 20px;
+  gap: 10px; }
+  .iniciar-sesion .boton-iniciar-sesion {
+    color: #932e4e;
+    border-color: #f373aa; }
+    .iniciar-sesion .boton-iniciar-sesion:focus {
+      background-color: #d9548e;
+      color: black; }

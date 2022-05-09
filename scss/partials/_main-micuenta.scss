@@ -1,0 +1,9 @@
+@import "variables/variables";
+@import "../sass2/mixins";
+.iniciar-sesion{
+    text-align: center;
+    @include form-contacto-inicio-sesion;
+    .boton-iniciar-sesion{
+        @include boton-accionar-rosa;
+    }
+}

@@ -1,0 +1,11 @@
+@import "variables/variables";
+@import "../sass2/mixins";
+.grid-form-contacto{
+    @include form-contacto-inicio-sesion;
+    h1{
+        text-align: center;
+    }
+    .boton-enviar-form{
+        @include boton-accionar-rosa;
+    }
+}
