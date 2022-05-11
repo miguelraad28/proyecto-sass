@@ -1,9 +1,9 @@
+@import "../../variables/variables";
 footer{
     background-color: $color-footer;
     width: 100%;
 }
 .grid-padre-footer{
-    font-family: 'Open Sans', sans-serif;
     display: grid;
     grid-template-columns: repeat(2, 50%);
     grid-template-rows:auto;
@@ -24,6 +24,7 @@ footer{
     color: black;
     display: flex;
     flex-flow: column nowrap;
+    font-family: $fuente-descripciones;
     margin: 10px 15px;
     text-decoration: none;
     h4{
@@ -71,12 +72,10 @@ footer{
         .grid-hijo-footer-left{
             grid-area: data-fiscal;
             justify-content: center;
-            padding: 0;
         }
         .grid-hijo-footer-right{
             grid-area: contacto;
             text-align: center;
-            padding: 0;
         }
         .grid-hijo-footer-credits{
             grid-area: creditos;

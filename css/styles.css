@@ -10,6 +10,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
 .barra-superior {
   background-color: black;
   text-align: center;
@@ -64,7 +65,6 @@ footer {
   width: 100%; }
 
 .grid-padre-footer {
-  font-family: 'Open Sans', sans-serif;
   display: grid;
   grid-template-columns: repeat(2, 50%);
   grid-template-rows: auto;
@@ -84,6 +84,7 @@ footer {
   color: black;
   display: flex;
   flex-flow: column nowrap;
+  font-family: "Open Sans", sans-serif;
   margin: 10px 15px;
   text-decoration: none; }
   .grid-hijo-footer-right h4 {
@@ -121,12 +122,10 @@ footer {
     grid-template-areas: "contacto" "data-fiscal" "creditos"; }
     .grid-padre-footer .grid-hijo-footer-left {
       grid-area: data-fiscal;
-      justify-content: center;
-      padding: 0; }
+      justify-content: center; }
     .grid-padre-footer .grid-hijo-footer-right {
       grid-area: contacto;
-      text-align: center;
-      padding: 0; }
+      text-align: center; }
     .grid-padre-footer .grid-hijo-footer-credits {
       grid-area: creditos; } }
 

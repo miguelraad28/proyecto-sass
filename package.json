@@ -7,12 +7,12 @@
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Miguel Raad",
   "license": "ISC",
   "dependencies": {
     "node-sass": "^7.0.1",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {},
-  "description": ""
+  "description": "Tienda Online de INFUSA"
 }

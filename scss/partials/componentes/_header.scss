@@ -33,8 +33,10 @@
         }
     }
 }
-nav ul{
-    margin: 0 auto;
+nav{
+    ul{
+        margin: 0 auto;
+    }
 }
 .color-propio{
     background-color: $color-nav;
