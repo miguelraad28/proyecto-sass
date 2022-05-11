@@ -16,12 +16,11 @@
     flex-direction: column;
     justify-content: center;
     h1{
-        @include titulos-h1;
         margin-bottom: 20px;
     }
     span{
-        @include titulos-h1;
         font-size: calc(1.375rem + 1.5vw);
+        font-weight: 500;
         margin: 20px 0;
     }
 }

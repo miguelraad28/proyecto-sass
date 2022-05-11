@@ -307,13 +307,10 @@ footer {
   flex-direction: column;
   justify-content: center; }
   .article-info-paquete h1 {
-    font-family: "Asap Condensed", sans-serif;
-    font-size: calc(100% * 1.3vw);
     margin-bottom: 20px; }
   .article-info-paquete span {
-    font-family: "Asap Condensed", sans-serif;
-    font-size: calc(100% * 1.3vw);
     font-size: calc(1.375rem + 1.5vw);
+    font-weight: 500;
     margin: 20px 0; }
 
 .grid-form-contacto {
