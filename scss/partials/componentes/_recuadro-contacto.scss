@@ -2,7 +2,4 @@
 @import "../../sass2/mixins";
 .grid-contacto{
     @include grid-favicon-contacto;
-    img{
-        height: 100%;
-    }
 }

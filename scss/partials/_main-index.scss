@@ -12,11 +12,7 @@
     }
 }
 .grid-categorias{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 300px));
-    gap: 20px;
-    justify-content: center;
-    margin: 0 20px;
+    @include grid-categorias-index;
 }
 .categoria{
     img{
@@ -55,5 +51,10 @@
     }
     :focus{
         background-color: #db8fee;
+    }
+}
+@media screen and (max-width: 750px) {
+    .grid-categorias{
+        @include grid-categorias-index-s;
     }
 }

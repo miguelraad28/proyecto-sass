@@ -93,6 +93,9 @@ footer {
   .grid-hijo-footer-right a {
     color: black;
     text-decoration: none; }
+  .grid-hijo-footer-right img {
+    max-height: 21.74px;
+    margin-right: 6px; }
 
 .grid-hijo-footer-credits {
   grid-column: span 2;
@@ -103,10 +106,16 @@ footer {
   color: blanchedalmond;
   font-family: "Open Sans", sans-serif;
   font-weight: 100; }
+  .grid-hijo-footer-credits a {
+    text-decoration: none;
+    color: blanchedalmond; }
   .grid-hijo-footer-credits h5 {
     font-weight: 100;
     margin: 0;
     font-size: 1em; }
+  .grid-hijo-footer-credits img {
+    max-height: 19.2px;
+    margin-right: 6px; }
 
 @media screen and (max-width: 1025px) {
   .grid-hijo-footer-credits {
@@ -134,9 +143,12 @@ footer {
   grid-template-columns: auto auto;
   grid-template-rows: 90px;
   margin: 50px auto;
-  justify-content: center; }
+  justify-content: center;
+  max-width: 245px; }
   .grid-contacto img {
-    height: 100%; }
+    height: 100%;
+    display: flex;
+    justify-content: flex-end; }
 
 * {
   margin: 0;
@@ -231,6 +243,14 @@ footer {
   .contenedor-boton-ver-mas :focus {
     background-color: #db8fee; }
 
+@media screen and (max-width: 750px) {
+  .grid-categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
+    gap: 10px;
+    justify-content: center;
+    margin: 0 15px; } }
+
 .main-productos {
   display: grid;
   margin: 0 auto;
@@ -289,11 +309,41 @@ footer {
   .grid-buscador .buscador {
     justify-content: center; } }
 
+@media screen and (max-width: 750px) {
+  .grid-contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 45%));
+    gap: 10px;
+    justify-content: center; }
+    .grid-contenedor-productos .producto {
+      transition: transform 0.2s; }
+      .grid-contenedor-productos .producto img {
+        border-radius: 12px; }
+      .grid-contenedor-productos .producto:hover {
+        transform: scale(1.05); }
+    .grid-contenedor-productos .titulo-producto {
+      margin-top: 5px;
+      color: black;
+      text-decoration: none;
+      text-align: center; }
+      .grid-contenedor-productos .titulo-producto h3 {
+        font-family: "Asap Condensed", sans-serif;
+        margin-bottom: 0;
+        font-size: 1.35rem; }
+      .grid-contenedor-productos .titulo-producto :last-child {
+        font-family: "Open Sans", sans-serif;
+        font-weight: 100; }
+  .main-productos {
+    max-width: 98vw; }
+  .grid-buscador {
+    width: 80vw;
+    margin: 40px auto; } }
+
 .contenedor-info-paquete {
   margin: 0 20px;
   margin-top: 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 800px));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 800px));
   justify-content: center; }
   .contenedor-info-paquete a {
     word-break: break-all; }

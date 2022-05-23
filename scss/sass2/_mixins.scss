@@ -16,6 +16,21 @@
         color: black;
     }
 }
+// INDEX
+@mixin grid-categorias-index {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 300px));
+    gap: 20px;
+    justify-content: center;
+    margin: 0 20px;
+}
+@mixin grid-categorias-index-s {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
+    gap: 10px;
+    justify-content: center;
+    margin: 0 15px;
+}
 // PRODUCTOS
 @mixin grid-buscador-productos {
     display: grid;
@@ -24,10 +39,60 @@
 @mixin grid-productos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 2em;
+    justify-content: center;
+    .producto{
+        transition: transform 0.2s;
+        img{
+            border-radius: $borde-img-productos;
+        }
+        &:hover{
+            transform: scale(1.05);
+        }
+    }
+    .titulo-producto{
+        margin-top: 5px;
+        color: black;
+        text-decoration: none;
+        text-align: center;
+        h3{
+            @include titulos-h3-productos;
+        }
+        :last-child{
+            @include precios-h3-productos;
+        }
+    }
 }
-@mixin grid-article-contacto{
+@mixin grid-productos-s {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 800px));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 45%));
+    gap: 10px;
+    justify-content: center;
+    .producto{
+        transition: transform 0.2s;
+        img{
+            border-radius: $borde-img-productos;
+        }
+        &:hover{
+            transform: scale(1.05);
+        }
+    }
+    .titulo-producto{
+        margin-top: 5px;
+        color: black;
+        text-decoration: none;
+        text-align: center;
+        h3{
+            @include titulos-h3-productos;
+        }
+        :last-child{
+            @include precios-h3-productos;
+        }
+    }
+}
+@mixin grid-article-tupaquete{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 800px));
     justify-content: center;
 }
 @mixin titulos-h3-productos{
@@ -46,6 +111,12 @@
     grid-template-rows: 90px;
     margin: 50px auto;
     justify-content: center;
+    max-width: 245px;
+    img{
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
 }
 // GRID INICIO SESION Y FORM CONTACTO
 @mixin form-contacto-inicio-sesion {
