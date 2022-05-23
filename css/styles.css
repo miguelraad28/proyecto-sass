@@ -81,9 +81,6 @@ footer {
   .grid-hijo-footer-right a {
     color: black;
     text-decoration: none; }
-  .grid-hijo-footer-right img {
-    max-height: 21.74px;
-    margin-right: 6px; }
 
 .grid-hijo-footer-credits {
   grid-column: span 2;
@@ -101,9 +98,10 @@ footer {
     font-weight: 100;
     margin: 0;
     font-size: 1em; }
-  .grid-hijo-footer-credits img {
-    max-height: 19.2px;
-    margin-right: 6px; }
+
+.redirection-icon {
+  max-height: 21px;
+  margin-right: 6px; }
 
 @media screen and (max-width: 1025px) {
   .grid-hijo-footer-credits {
