@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Smokum&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Akshar&family=Asap+Condensed&family=Lato:wght@300&family=Open+Sans:wght@300&family=Oswald:wght@350&family=Quicksand:wght@350&display=swap");
 .barra-superior {
   background-color: black;
   text-align: center;
@@ -9,7 +9,7 @@
     word-spacing: 0.5em;
     margin: 0 30px;
     font-weight: 400;
-    font-family: 'Open Sans';
+    font-family: "Quicksand", "Lato", "Open Sans", sans-serif;
     color: white; }
 
 .span-logo {
@@ -72,7 +72,7 @@ footer {
   color: black;
   display: flex;
   flex-flow: column nowrap;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Quicksand", "Lato", "Open Sans", sans-serif;
   margin: 10px 15px;
   text-decoration: none; }
   .grid-hijo-footer-right h4 {
@@ -89,7 +89,7 @@ footer {
   background-color: #121212;
   padding: 10px;
   color: blanchedalmond;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Quicksand", "Lato", "Open Sans", sans-serif;
   font-weight: 100; }
   .grid-hijo-footer-credits a {
     text-decoration: none;
@@ -177,7 +177,7 @@ footer {
     padding-bottom: calc(490px + 1em); } }
 
 .titulo-tienda-index {
-  font-family: "Asap Condensed", sans-serif;
+  font-family: "Asap Condensed", "Akshar", "Oswald", sans-serif;
   font-size: calc(100% * 1.3vw);
   padding-top: 30px;
   padding-bottom: 30px;
@@ -186,7 +186,7 @@ footer {
   text-align: center;
   margin: 0 20px; }
   .titulo-tienda-index :last-child {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Quicksand", "Lato", "Open Sans", sans-serif;
     font-weight: 100; }
 
 .grid-categorias {
@@ -209,7 +209,7 @@ footer {
 
 .titulo-categoria {
   margin-top: 5px;
-  font-family: "Asap Condensed", sans-serif;
+  font-family: "Asap Condensed", "Akshar", "Oswald", sans-serif;
   text-align: center;
   color: black;
   text-decoration: none;
@@ -247,10 +247,10 @@ footer {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   margin: 40px 0; }
   .grid-buscador .titulo-tienda-productos {
-    font-family: "Asap Condensed", sans-serif;
+    font-family: "Asap Condensed", "Akshar", "Oswald", sans-serif;
     font-size: calc(100% * 1.3vw); }
     .grid-buscador .titulo-tienda-productos :last-child {
-      font-family: "Open Sans", sans-serif;
+      font-family: "Quicksand", "Lato", "Open Sans", sans-serif;
       font-weight: 100;
       margin-bottom: 0.5em; }
   .grid-buscador .buscador {
@@ -282,11 +282,11 @@ footer {
     text-decoration: none;
     text-align: center; }
     .grid-contenedor-productos .titulo-producto h3 {
-      font-family: "Asap Condensed", sans-serif;
+      font-family: "Asap Condensed", "Akshar", "Oswald", sans-serif;
       margin-bottom: 0;
       font-size: 1.35rem; }
     .grid-contenedor-productos .titulo-producto :last-child {
-      font-family: "Open Sans", sans-serif;
+      font-family: "Quicksand", "Lato", "Open Sans", sans-serif;
       font-weight: 100; }
 
 @media screen and (max-width: 875px) {
@@ -313,11 +313,11 @@ footer {
       text-decoration: none;
       text-align: center; }
       .grid-contenedor-productos .titulo-producto h3 {
-        font-family: "Asap Condensed", sans-serif;
+        font-family: "Asap Condensed", "Akshar", "Oswald", sans-serif;
         margin-bottom: 0;
         font-size: 1.35rem; }
       .grid-contenedor-productos .titulo-producto :last-child {
-        font-family: "Open Sans", sans-serif;
+        font-family: "Quicksand", "Lato", "Open Sans", sans-serif;
         font-weight: 100; }
   .main-productos {
     max-width: 98vw; }
