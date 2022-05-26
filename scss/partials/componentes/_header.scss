@@ -7,20 +7,21 @@
         min-height: 20px;
         display: inline;
         word-spacing: 0.5em;
-        margin: 0 30px;
+        margin: 0 auto;
         font-weight: 400;
         font-family: $fuente-descripciones;
         color: white;
     }
 }
-.span-logo{
-    background-color: rgb(255, 255, 255);
-    width: 100%;
+.div-logo{
+    background-color: white;
     justify-content: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 280px));
     .logo-top{
-        margin: 20px;
-        width: 280px
+        width: 100%;
+        margin: 20px 0;
+        padding: 0 5px;
     }
     .logo-top-index{
         animation-name: logo-in;

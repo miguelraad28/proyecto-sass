@@ -7,7 +7,6 @@
 }
 .grid-buscador{
     @include grid-buscador-productos;
-    margin: 40px 0;
     .titulo-tienda-productos{
         @include titulos-h1;
         :last-child{
@@ -29,10 +28,11 @@
     @include grid-productos;
 }
 @media screen and (max-width: 875px) {
-    .titulo-tienda-productos{
-        text-align: center;
-    }
     .grid-buscador{
+        @include grid-buscador-productos-s;
+        .titulo-tienda-productos{
+            text-align: center;
+        }
         .buscador{
             justify-content: center;
         }
@@ -44,9 +44,5 @@
     }
     .main-productos{
         max-width: 98vw;
-    }
-    .grid-buscador{
-        width: 80vw;
-        margin: 40px auto;
     }
 }

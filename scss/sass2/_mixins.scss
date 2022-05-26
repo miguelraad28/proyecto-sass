@@ -2,7 +2,6 @@
 // GENERALES
 @mixin titulos-h1 {
     font-family: $fuente-titulos;
-    font-size: calc(100% * 1.3vw);
 }
 @mixin subtitulos-h2 {
     font-family: $fuente-descripciones;
@@ -19,26 +18,34 @@
 // INDEX
 @mixin grid-categorias-index {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 300px));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
     justify-content: center;
-    margin: 0 20px;
+    margin: 0 auto;
+    max-width: 70vw;
 }
 @mixin grid-categorias-index-s {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1em;
     justify-content: center;
-    margin: 0 15px;
+    margin: 0 auto;
+    max-width: 90vw;
 }
 // PRODUCTOS
 @mixin grid-buscador-productos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    margin: 40px 0;
+}
+@mixin grid-buscador-productos-s {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(100px, 1fr));
+    margin: 40px 0;
 }
 @mixin grid-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2em;
     justify-content: center;
     .producto{
@@ -65,8 +72,8 @@
 }
 @mixin grid-productos-s {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 45%));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1em;
     justify-content: center;
     .producto{
         transition: transform 0.2s;

@@ -30,6 +30,7 @@ footer{
     h4{
         margin: 3px 0;
         font-size: 1.3em;
+        font-weight: bold;
     }
     a{
         color: black;
@@ -87,6 +88,7 @@ footer{
         }
         .grid-hijo-footer-credits{
             grid-area: creditos;
+            word-break: break-all;
         }
     }
 }
