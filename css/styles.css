@@ -306,9 +306,10 @@ footer {
 @media screen and (max-width: 750px) {
   .grid-contenedor-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1em;
-    justify-content: center; }
+    justify-content: center;
+    margin: 0 1em; }
     .grid-contenedor-productos .producto {
       transition: transform 0.2s; }
       .grid-contenedor-productos .producto img {
