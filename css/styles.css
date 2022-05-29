@@ -135,8 +135,9 @@ footer {
       grid-area: contacto;
       text-align: center; }
     .grid-padre-footer .grid-hijo-footer-credits {
-      grid-area: creditos;
-      word-break: break-all; } }
+      grid-area: creditos; }
+      .grid-padre-footer .grid-hijo-footer-credits h5:last-child {
+        word-break: break-all; } }
 
 .grid-contacto {
   display: grid;
