@@ -47,11 +47,11 @@ const inputBusqueda = document.getElementById("idInputBusqueda")
 const buttonBusqueda = document.getElementById("idButtonBusqueda")
 buttonBusqueda.addEventListener("change", (event) =>{
     event.preventDefault()
-    funcionBusqueda(inputBusqueda.value)
+    funcionBusqueda(inputBusqueda.value.toLowerCase())
 })
 buttonBusqueda.addEventListener("click", (event) =>{
     event.preventDefault()
-    funcionBusqueda(inputBusqueda.value)
+    funcionBusqueda(inputBusqueda.value.toLowerCase())
 })
 function funcionBusqueda(inputBusqueda){
     const resultadosDeBusqueda = productos.filter((producto) => producto.nombre.includes(inputBusqueda))
