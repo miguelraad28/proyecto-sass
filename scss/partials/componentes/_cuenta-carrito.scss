@@ -1,0 +1,110 @@
+@import "variables/variables";
+// CARRITO DE COMPRAS E ICONO DE CUENTA
+.div-cuenta-carrito{
+    font-family: $fuente-descripciones;
+    display: flex;
+    justify-content: space-around;
+    margin: 5px 10px;
+    .div-cuenta{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-top: 20%;
+        margin-right: 20px;
+    }
+    .div-carrito{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-top: 20%;
+    }
+    .boton-cuenta-carrito{
+        background-color: transparent;
+        border: 0;
+    }
+}
+// PRODUCTO EN CARRITO
+.productoEnCarrito{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+    "imagen tituloPrecioCantidad eliminar"
+    ;
+    padding: 10px 5px 10px 5px;
+    border-bottom: 1px solid black;
+    h6{
+        margin-bottom: 0;
+    }
+}
+.imagenProductoEnCarrito{
+    grid-area: imagen;
+    height: auto;
+    img{
+        width: 80px;
+        height: 80px;
+        width: 100%;
+        border-radius: 12px;
+    }
+}
+.tituloPrecioCantidadProductoEnCarrito{
+    display: grid;
+    grid-area: tituloPrecioCantidad;
+    grid-template-areas: 
+    "titulo titulo"
+    "precio cantidad"
+    ;
+    .tituloProductoEnCarrito{
+        margin: 0px 6px 10px 8px;
+        grid-area: titulo;
+    }
+    .precioProductoEnCarrito{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 5px;
+        grid-area: precio;
+    }
+    .cantidadProductoEnCarrito{
+        display: flex;
+        justify-content: flex-start;
+        grid-area: cantidad;
+        input{
+            text-align: center;
+            border: 1px solid gray;
+            border-radius: 5px;
+            width: 40px;
+            height: 20px;
+            margin-left: 5px;
+        }
+    }
+}
+.eliminarProductoEnCarrito{
+    grid-area: eliminar;
+    display: flex;
+    align-content: center;
+    button{
+        font-weight: 1000;
+        border: 0;
+        border-radius: 6px;
+        background-color: rgb(255, 60, 60);
+        height: 26px;
+        width: 26px;
+        &:active{
+            border: 3px solid rgb(184, 0, 0);
+        }
+    }
+}
+.offcanvas-header{
+    border-bottom: 1px solid black;
+    #offcanvasRightLabel{
+        margin-bottom: 0px;
+    }
+}
+.offcanvas-body{
+    padding: 0px 20px 5px 20px;
+}
+.offcanvas-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}

@@ -1,6 +1,9 @@
 @import "../variables/variables";
 @import "../sass2/mixins";
 @import "../sass2/extend";
+.navbar{
+    padding-left: .75rem
+}
 .titulo-tienda-index{
     @include titulos-h1;
     padding-top: 30px;

@@ -1,60 +1,68 @@
-class Producto{
-    constructor(nombre, precio, stock, imagen){
+/*class Producto{
+    constructor(id, nombre, precio, stock, img, cantidad){
+        this.id = id
         this.nombre = nombre
         this.precio = precio
         this.stock = stock
-        this.imagen = imagen
+        this.img = img
+        this.cantidad = cantidad
     }
 }
-const producto1 = new Producto("oráculo conexión con el universo box", 3990, 20, "../images/productos/cartas/universobox.jpg")
-const producto2 = new Producto("oráculo conexión con el universo simple", 2650, 35, "../images/productos/cartas/universosolo.jpg")
-const producto3 = new Producto("lectura de cartas 45minn", 4800, 10000, "../images/productos/tarot.jpg")
-const producto4 = new Producto("kit 7 chakras personal", 2650, 12, "../images/productos/limpieza/chakras.jpg")
-const producto5 = new Producto("spry energético sándalo y champa", 650, 16, "../images/productos/limpieza/sandaloychampa.jpg")
-const producto6 = new Producto("spry energético de limpieza", 650, 11, "../images/productos/limpieza/limpieza.jpg")
-const producto7 = new Producto("spry energético ruda y romero", 690, 19, "../images/productos/limpieza/rudayromero.jpg")
-const producto8 = new Producto("spry energético abundancia y fortuna", 780, 25, "../images/productos/limpieza/abundanciayfortuna.jpg")
-const producto9 = new Producto("vela de soja de abundancia", 890, 2, "../images/productos/velas/abundancia.jpg")
-const producto10 = new Producto("vela de soja para el amor", 890, 22, "../images/productos/velas/amor.jpg")
-const producto11 = new Producto(`vela de soja "buda"`, 950, 20, "../images/productos/velas/buda.jpg")
-const producto12 = new Producto("vela de soja limpieza energética", 920, 20, "../images/productos/velas/limpieza.jpg")
-const producto13 = new Producto("vela de soja para la seducción", 990, 9, "../images/productos/velas/seduccion.jpg")
+*/
+const productos = 
+[{id: 0, nombre: "oráculo conexión con el universo box", precio: 3990, stock: 20, img:"../images/productos/cartas/universobox.jpg"},
+{id: 1, nombre: "oráculo conexión con el universo simple", precio: 2650, stock: 35, img:"../images/productos/cartas/universosolo.jpg"},
+{id: 2, nombre: "lectura de cartas 45min", precio: 4800, stock: 100000, img:"../images/productos/tarot.jpg"},
+{id: 3, nombre: "kit personal 7 chakras", precio: 2650, stock: 12, img:"../images/productos/limpieza/chakras.jpg"},
+{id: 4, nombre: "spry limpieza energética sandalo y champa", precio: 650, stock: 16, img:"../images/productos/limpieza/sandaloychampa.jpg"},
+{id: 5, nombre: "spry limpieza energética de descarga", precio: 650, stock: 11, img:"../images/productos/limpieza/limpieza.jpg"},
+{id: 6, nombre: "spry limpieza energética ruda y romero", precio: 690, stock: 19, img:"../images/productos/limpieza/rudayromero.jpg"},
+{id: 7, nombre: "spry limpieza energética abundancia y fortuna", precio: 780, stock: 25, img:"../images/productos/limpieza/abundanciayfortuna.jpg"},
+{id: 8, nombre: "vela de soja de la abundancia y fortuna", precio: 890, stock: 2, img:"../images/productos/velas/abundancia.jpg"},
+{id: 9, nombre: "vela de soja del amor", precio: 890, stock: 22, img:"../images/productos/velas/amor.jpg"},
+{id: 10, nombre: `vela de soja "buda"`, precio: 950, stock: 20, img:"../images/productos/velas/buda.jpg"},
+{id: 11, nombre: "vela de soja de limpieza energética", precio: 920, stock: 20, img:"../images/productos/velas/limpieza.jpg"},
+{id: 12, nombre: "vela de soja de la seducción", precio: 990, stock: 9, img:"../images/productos/velas/seduccion.jpg"},]
 
-const productos = [producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10, producto11, producto12, producto13]
+const carrito = []
+
 const divProductos = document.getElementById("idDivProductos")
-for(let producto of productos){
+productos.forEach((producto, id) => {
     divProductos.innerHTML += `
     <div class="producto">
-        <div class="contenedor-producto-interno">
+        <div class="contenedor-producto-interno" id="producto${id}">
             <a href="#">
                 <div>
-                    <img class="img-fluid" src="${producto.imagen}">
+                    <img class="img-fluid imagen-producto" src="${producto.img}">
                 </div>
                 <div class="titulo-producto">
-                    <h3 style="text-transform: uppercase;">
+                    <h3 class="nombre-producto" style="text-transform: uppercase;">
                         ${producto.nombre}
                     </h3>
-                    <h3>
+                    <h3 class="precio-producto">
                         $${producto.precio}
                     </h3>
                 </div>
             </a>
+            <div class="div-boton-agregar">
+                <button>Agregar al carrito</button>
+            </div>
         </div>
     </div>
     `
-}
-const inputBusqueda = document.getElementById("idInputBusqueda")
-const buttonBusqueda = document.getElementById("idButtonBusqueda")
-buttonBusqueda.addEventListener("change", (event) =>{
-    event.preventDefault()
-    funcionBusqueda(inputBusqueda.value.toLowerCase())
 })
-buttonBusqueda.addEventListener("click", (event) =>{
+const inputBusqueda = document.getElementById("idInputBusqueda")
+const botonBusqueda = document.getElementById("idBotonBusqueda")
+botonBusqueda.addEventListener("change", (event) =>{
     event.preventDefault()
-    funcionBusqueda(inputBusqueda.value.toLowerCase())
+    funcionBusqueda(inputBusqueda.value)
+})
+botonBusqueda.addEventListener("click", (event) =>{
+    event.preventDefault()
+    funcionBusqueda(inputBusqueda.value)
 })
 function funcionBusqueda(inputBusqueda){
-    const resultadosDeBusqueda = productos.filter((producto) => producto.nombre.includes(inputBusqueda))
+    const resultadosDeBusqueda = productos.filter((producto) => producto.nombre.includes(inputBusqueda.toLowerCase()))
     funcionMostrarHTML(resultadosDeBusqueda)
 }
 function funcionMostrarHTML(resultadosDeBusqueda){
@@ -62,22 +70,53 @@ function funcionMostrarHTML(resultadosDeBusqueda){
     for(let producto of resultadosDeBusqueda){
         divProductos.innerHTML += `
         <div class="producto">
-            <div class="contenedor-producto-interno">
+            <div class="contenedor-producto-interno" id="producto${producto.id}">
                 <a href="#">
                     <div>
-                        <img class="img-fluid" src="${producto.imagen}">
+                        <img class="img-fluid imagen-producto" src="${producto.img}">
                     </div>
                     <div class="titulo-producto">
-                        <h3 style="text-transform: uppercase;">
+                        <h3 class="nombre-producto" style="text-transform: uppercase;">
                             ${producto.nombre}
                         </h3>
-                        <h3>
+                        <h3 class="precio-producto">
                             $${producto.precio}
                         </h3>
                     </div>
                 </a>
+                <div class="div-boton-agregar">
+                    <button>Agregar al carrito</button>
+                </div>
             </div>
         </div>
         `
     }
 }
+let divCarritoDeCompras = document.getElementById("divCarritoDeCompras")
+productos.forEach((producto) => {
+    let botonAgregarACarrito = document.getElementById(`producto${producto.id}`).lastElementChild.lastElementChild
+    botonAgregarACarrito.addEventListener("click", () =>{
+        console.log(producto)
+        divCarritoDeCompras += `
+        <div class="productoEnCarrito" id="${producto.id}">
+            <div class="imagenProductoEnCarrito">
+                <img src="${producto.img}">
+            </div>
+            <div class="tituloPrecioCantidadProductoEnCarrito">
+                <div class="tituloProductoEnCarrito">
+                    <h6>${producto.nombre}</h6>
+                </div>
+                <div class="precioProductoEnCarrito">
+                    <h6>$ ${producto.precio}</h6>
+                </div>
+                <div class="cantidadProductoEnCarrito">
+                    <input type="number">
+                </div>
+            </div>
+            <div class="eliminarProductoEnCarrito">
+                <button>X</button>
+            </div>
+        </div>
+        `
+    })
+})

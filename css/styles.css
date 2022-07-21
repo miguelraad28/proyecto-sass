@@ -41,12 +41,15 @@
   0% {
     opacity: 0%; } }
 
-nav ul {
-  margin: 0 auto; }
-
-.color-propio {
+.navbar-contenedor {
   background-color: #ff98c4;
-  color: black; }
+  color: black;
+  display: flex;
+  flex-direction: row; }
+  .navbar-contenedor ul {
+    margin: 0 auto; }
+  .navbar-contenedor .navbar-toggler {
+    border: none; }
 
 .color-submenu {
   background-color: #ffc8e1; }
@@ -151,6 +154,96 @@ footer {
     display: flex;
     justify-content: flex-end; }
 
+.div-cuenta-carrito {
+  font-family: "Quicksand", "Lato", "Open Sans", sans-serif;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 10px; }
+  .div-cuenta-carrito .div-cuenta {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 20%;
+    margin-right: 20px; }
+  .div-cuenta-carrito .div-carrito {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 20%; }
+  .div-cuenta-carrito .boton-cuenta-carrito {
+    background-color: transparent;
+    border: 0; }
+
+.productoEnCarrito {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "imagen tituloPrecioCantidad eliminar";
+  padding: 10px 5px 10px 5px;
+  border-bottom: 1px solid black; }
+  .productoEnCarrito h6 {
+    margin-bottom: 0; }
+
+.imagenProductoEnCarrito {
+  grid-area: imagen;
+  height: auto; }
+  .imagenProductoEnCarrito img {
+    width: 80px;
+    height: 80px;
+    width: 100%;
+    border-radius: 12px; }
+
+.tituloPrecioCantidadProductoEnCarrito {
+  display: grid;
+  grid-area: tituloPrecioCantidad;
+  grid-template-areas: "titulo titulo" "precio cantidad"; }
+  .tituloPrecioCantidadProductoEnCarrito .tituloProductoEnCarrito {
+    margin: 0px 6px 10px 8px;
+    grid-area: titulo; }
+  .tituloPrecioCantidadProductoEnCarrito .precioProductoEnCarrito {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5px;
+    grid-area: precio; }
+  .tituloPrecioCantidadProductoEnCarrito .cantidadProductoEnCarrito {
+    display: flex;
+    justify-content: flex-start;
+    grid-area: cantidad; }
+    .tituloPrecioCantidadProductoEnCarrito .cantidadProductoEnCarrito input {
+      text-align: center;
+      border: 1px solid gray;
+      border-radius: 5px;
+      width: 40px;
+      height: 20px;
+      margin-left: 5px; }
+
+.eliminarProductoEnCarrito {
+  grid-area: eliminar;
+  display: flex;
+  align-content: center; }
+  .eliminarProductoEnCarrito button {
+    font-weight: 1000;
+    border: 0;
+    border-radius: 6px;
+    background-color: #ff3c3c;
+    height: 26px;
+    width: 26px; }
+    .eliminarProductoEnCarrito button:active {
+      border: 3px solid #b80000; }
+
+.offcanvas-header {
+  border-bottom: 1px solid black; }
+  .offcanvas-header #offcanvasRightLabel {
+    margin-bottom: 0px; }
+
+.offcanvas-body {
+  padding: 0px 20px 5px 20px; }
+
+.offcanvas-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px; }
+
 * {
   margin: 0;
   padding: 0;
@@ -201,6 +294,9 @@ footer {
   .titulo-para-categorias h3, .titulo-categoria3 h3, .titulo-categoria4 h3 {
     margin-bottom: 0;
     font-size: 1.35rem; }
+
+.navbar {
+  padding-left: .75rem; }
 
 .titulo-tienda-index {
   font-family: "Asap Condensed", "Akshar", "Oswald", sans-serif;
@@ -294,11 +390,22 @@ footer {
 /* GRID PRODUCTOS --- */
 .grid-contenedor-productos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 10%));
   gap: 2em;
   justify-content: center; }
   .grid-contenedor-productos .producto {
     transition: transform 0.2s; }
+    .grid-contenedor-productos .producto .div-boton-agregar {
+      display: flex;
+      justify-content: center;
+      margin-top: 5px; }
+      .grid-contenedor-productos .producto .div-boton-agregar button {
+        background-color: #ffb8d7;
+        border: 0;
+        padding: 3px 5px 6px 5px;
+        border-radius: 5px; }
+        .grid-contenedor-productos .producto .div-boton-agregar button:active {
+          background-color: #ffa1ca; }
     .grid-contenedor-productos .producto img {
       border-radius: 12px; }
     .grid-contenedor-productos .producto:hover {
@@ -329,7 +436,7 @@ footer {
 @media screen and (max-width: 750px) {
   .grid-contenedor-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 50%));
     gap: 1em;
     justify-content: center;
     margin: 0 1em; }

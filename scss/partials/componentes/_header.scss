@@ -34,14 +34,17 @@
         }
     }
 }
-nav{
+.navbar-contenedor{
+    background-color: $color-nav;
+    color: black;
+    display: flex;
+    flex-direction: row;
     ul{
         margin: 0 auto;
     }
-}
-.color-propio{
-    background-color: $color-nav;
-    color: black;
+    .navbar-toggler{
+        border: none;
+    }
 }
 .color-submenu{
     background-color: #ffc8e1;

@@ -45,11 +45,25 @@
 }
 @mixin grid-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 10%));
     gap: 2em;
     justify-content: center;
     .producto{
         transition: transform 0.2s;
+        .div-boton-agregar{
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+            button{
+                background-color: #ffb8d7;
+                border: 0;
+                padding: 3px 5px 6px 5px;
+                border-radius: 5px;
+                &:active{
+                    background-color: #ffa1ca;
+                }
+            }
+        }
         img{
             border-radius: $borde-img-productos;
         }
@@ -73,7 +87,7 @@
 }
 @mixin grid-productos-s {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 50%));
     gap: 1em;
     justify-content: center;
     margin: 0 1em;
