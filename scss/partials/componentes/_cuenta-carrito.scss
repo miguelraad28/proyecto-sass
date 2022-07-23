@@ -56,17 +56,13 @@
     .tituloProductoEnCarrito{
         margin: 0px 6px 10px 8px;
         grid-area: titulo;
+        text-transform: uppercase;
     }
-    .precioProductoEnCarrito{
+    .precioCantidadProductoEnCarrito{
         display: flex;
         justify-content: flex-end;
-        margin-right: 5px;
+        margin-left: 8px;
         grid-area: precio;
-    }
-    .cantidadProductoEnCarrito{
-        display: flex;
-        justify-content: flex-start;
-        grid-area: cantidad;
         input{
             text-align: center;
             border: 1px solid gray;
@@ -94,8 +90,10 @@
     }
 }
 .offcanvas-header{
+    background-color: rgb(255, 241, 252);
     border-bottom: 1px solid black;
     #offcanvasRightLabel{
+        font-weight: bolder;
         margin-bottom: 0px;
     }
 }
@@ -103,8 +101,11 @@
     padding: 0px 20px 5px 20px;
 }
 .offcanvas-footer{
+    font-weight: bolder;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
+    height: 200px;
+    background-color: rgb(255, 241, 252);
+    border-top: 1px solid black;
 }

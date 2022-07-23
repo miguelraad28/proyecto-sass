@@ -198,17 +198,14 @@ footer {
   grid-template-areas: "titulo titulo" "precio cantidad"; }
   .tituloPrecioCantidadProductoEnCarrito .tituloProductoEnCarrito {
     margin: 0px 6px 10px 8px;
-    grid-area: titulo; }
-  .tituloPrecioCantidadProductoEnCarrito .precioProductoEnCarrito {
+    grid-area: titulo;
+    text-transform: uppercase; }
+  .tituloPrecioCantidadProductoEnCarrito .precioCantidadProductoEnCarrito {
     display: flex;
     justify-content: flex-end;
-    margin-right: 5px;
+    margin-left: 8px;
     grid-area: precio; }
-  .tituloPrecioCantidadProductoEnCarrito .cantidadProductoEnCarrito {
-    display: flex;
-    justify-content: flex-start;
-    grid-area: cantidad; }
-    .tituloPrecioCantidadProductoEnCarrito .cantidadProductoEnCarrito input {
+    .tituloPrecioCantidadProductoEnCarrito .precioCantidadProductoEnCarrito input {
       text-align: center;
       border: 1px solid gray;
       border-radius: 5px;
@@ -231,18 +228,23 @@ footer {
       border: 3px solid #b80000; }
 
 .offcanvas-header {
+  background-color: #fff1fc;
   border-bottom: 1px solid black; }
   .offcanvas-header #offcanvasRightLabel {
+    font-weight: bolder;
     margin-bottom: 0px; }
 
 .offcanvas-body {
   padding: 0px 20px 5px 20px; }
 
 .offcanvas-footer {
+  font-weight: bolder;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px; }
+  height: 200px;
+  background-color: #fff1fc;
+  border-top: 1px solid black; }
 
 * {
   margin: 0;
