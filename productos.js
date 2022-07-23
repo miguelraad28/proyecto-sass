@@ -1,3 +1,31 @@
+let carrito = []
+if(localStorage.getItem("carrito")){
+    carrito = JSON.parse(localStorage.getItem("carrito"))
+    carrito.forEach(producto => {
+        divCarritoDeCompras.innerHTML += `
+        <div class="productoEnCarrito" id="${producto.id}">
+            <div class="imagenProductoEnCarrito">
+                <img src="${producto.img}">
+            </div>
+            <div class="tituloPrecioCantidadProductoEnCarrito">
+                <div class="tituloProductoEnCarrito">
+                    <h6>${producto.nombre}</h6>
+                </div>
+                <div class="precioCantidadProductoEnCarrito">
+                    <h6>$ ${producto.precio}</h6>
+                    <input type="number" value="${producto.cantidad}">
+                </div>
+            </div>
+            <div class="eliminarProductoEnCarrito">
+                <button>X</button>
+            </div>
+        </div>
+        `
+    })
+}else{
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+}
+
 const productos = 
 [{id: 0, nombre: "oráculo conexión con el universo box", precio: 3990, stock: 20, img:"../images/productos/cartas/universobox.jpg", cantidad: 0},
 {id: 1, nombre: "oráculo conexión con el universo simple", precio: 2650, stock: 35, img:"../images/productos/cartas/universosolo.jpg", cantidad: 0},
@@ -38,34 +66,6 @@ productos.forEach((producto, id) => {
     </div>
     `
 })
-
-let carrito = []
-if(localStorage.getItem("carrito")){
-    carrito = JSON.parse(localStorage.getItem("carrito"))
-    carrito.forEach(producto => {
-        divCarritoDeCompras.innerHTML += `
-        <div class="productoEnCarrito" id="${producto.id}">
-            <div class="imagenProductoEnCarrito">
-                <img src="${producto.img}">
-            </div>
-            <div class="tituloPrecioCantidadProductoEnCarrito">
-                <div class="tituloProductoEnCarrito">
-                    <h6>${producto.nombre}</h6>
-                </div>
-                <div class="precioCantidadProductoEnCarrito">
-                    <h6>$ ${producto.precio}</h6>
-                    <input type="number" value="${producto.cantidad}">
-                </div>
-            </div>
-            <div class="eliminarProductoEnCarrito">
-                <button>X</button>
-            </div>
-        </div>
-        `
-    })
-}else{
-    localStorage.setItem("carrito", JSON.stringify(carrito))
-}
 
 const inputBusqueda = document.getElementById("idInputBusqueda")
 const botonBusqueda = document.getElementById("idBotonBusqueda")
@@ -111,28 +111,33 @@ function funcionMostrarHTML(resultadosDeBusqueda){
 productos.forEach((producto) => {
     let botonAgregarACarrito = document.getElementById(`producto${producto.id}`).lastElementChild.lastElementChild
     botonAgregarACarrito.addEventListener("click", () =>{
-        producto.cantidad += 1
-        divCarritoDeCompras.innerHTML += `
-        <div class="productoEnCarrito" id="${producto.id}">
-            <div class="imagenProductoEnCarrito">
-                <img src="${producto.img}">
-            </div>
-            <div class="tituloPrecioCantidadProductoEnCarrito">
-                <div class="tituloProductoEnCarrito">
-                    <h6>${producto.nombre}</h6>
+        if(carrito.find(productoEnCarrito => productoEnCarrito.id == producto.id)){
+            producto.cantidad += 1
+            console.log(carrito)
+        }else{
+            producto.cantidad += 1
+            divCarritoDeCompras.innerHTML += `
+            <div class="productoEnCarrito" id="${producto.id}">
+                <div class="imagenProductoEnCarrito">
+                    <img src="${producto.img}">
                 </div>
-                <div class="precioCantidadProductoEnCarrito">
-                    <h6>$ ${producto.precio}</h6>
-                    <input type="number" value="${producto.cantidad}">
+                <div class="tituloPrecioCantidadProductoEnCarrito">
+                    <div class="tituloProductoEnCarrito">
+                        <h6>${producto.nombre}</h6>
+                    </div>
+                    <div class="precioCantidadProductoEnCarrito">
+                        <h6>$ ${producto.precio}</h6>
+                        <input type="number" value="${producto.cantidad}">
+                    </div>
+                </div>
+                <div class="eliminarProductoEnCarrito">
+                    <button>X</button>
                 </div>
             </div>
-            <div class="eliminarProductoEnCarrito">
-                <button>X</button>
-            </div>
-        </div>
-        `
-        carrito.push(producto);
-        console.log(carrito)
+            `
+            carrito.push(producto);
+            console.log(carrito)
+        }
         localStorage.setItem("carrito", JSON.stringify(carrito))
     })
 })
