@@ -112,29 +112,27 @@ productos.forEach((producto) => {
     let botonAgregarACarrito = document.getElementById(`producto${producto.id}`).lastElementChild.lastElementChild
     botonAgregarACarrito.addEventListener("click", () =>{
         producto.cantidad += 1
+        divCarritoDeCompras.innerHTML += `
+        <div class="productoEnCarrito" id="${producto.id}">
+            <div class="imagenProductoEnCarrito">
+                <img src="${producto.img}">
+            </div>
+            <div class="tituloPrecioCantidadProductoEnCarrito">
+                <div class="tituloProductoEnCarrito">
+                    <h6>${producto.nombre}</h6>
+                </div>
+                <div class="precioCantidadProductoEnCarrito">
+                    <h6>$ ${producto.precio}</h6>
+                    <input type="number" value="${producto.cantidad}">
+                </div>
+            </div>
+            <div class="eliminarProductoEnCarrito">
+                <button>X</button>
+            </div>
+        </div>
+        `
         carrito.push(producto);
         console.log(carrito)
         localStorage.setItem("carrito", JSON.stringify(carrito))
     })
 })
-function mostrarEnCarrito(productos){
-    divCarritoDeCompras.innerHTML += `
-    <div class="productoEnCarrito" id="${producto.id}">
-        <div class="imagenProductoEnCarrito">
-            <img src="${producto.img}">
-        </div>
-        <div class="tituloPrecioCantidadProductoEnCarrito">
-            <div class="tituloProductoEnCarrito">
-                <h6>${producto.nombre}</h6>
-            </div>
-            <div class="precioCantidadProductoEnCarrito">
-                <h6>$ ${producto.precio}</h6>
-                <input type="number" value="${producto.cantidad}">
-            </div>
-        </div>
-        <div class="eliminarProductoEnCarrito">
-            <button>X</button>
-        </div>
-    </div>
-    `
-}
