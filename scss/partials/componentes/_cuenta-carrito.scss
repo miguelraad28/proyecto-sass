@@ -60,7 +60,7 @@
     }
     .precioCantidadProductoEnCarrito{
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         margin-left: 8px;
         grid-area: precio;
         input{
@@ -105,7 +105,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    height: 80px;
     background-color: rgb(255, 241, 252);
     border-top: 1px solid black;
 }

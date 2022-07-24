@@ -202,7 +202,7 @@ footer {
     text-transform: uppercase; }
   .tituloPrecioCantidadProductoEnCarrito .precioCantidadProductoEnCarrito {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-left: 8px;
     grid-area: precio; }
     .tituloPrecioCantidadProductoEnCarrito .precioCantidadProductoEnCarrito input {
@@ -242,7 +242,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
+  height: 80px;
   background-color: #fff1fc;
   border-top: 1px solid black; }
 
