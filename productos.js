@@ -25,7 +25,6 @@ if(localStorage.getItem("carrito")){
 }else{
     localStorage.setItem("carrito", JSON.stringify(carrito))
 }
-let resultadosDeBusqueda = []
 const productos = 
 [{id: 0, nombre: "oráculo conexión con el universo box", precio: 3990, stock: 20, img:"../images/productos/cartas/universobox.jpg"},
 {id: 1, nombre: "oráculo conexión con el universo simple", precio: 2650, stock: 35, img:"../images/productos/cartas/universosolo.jpg"},
@@ -110,33 +109,35 @@ function mostrarBusquedaDeProductos(resultadosDeBusqueda){
 let productoAñadido
 productos.forEach((producto) => {
     let botonAgregarACarrito = document.getElementById(`producto${producto.id}`).lastElementChild.lastElementChild
-    botonAgregarACarrito.addEventListener("click", (productos) =>{
-        funcionAgregarACarrito(producto)
+    botonAgregarACarrito.addEventListener("click", () =>{
         productoAñadido = {
             id: producto.id,
             nombre: producto.nombre,
             precio: producto.precio,
             img: producto.img,
-            cantidad: producto.cantidad = 0
+            cantidad: cantidad = 0
         }
-        if(carrito.find(productoEnCarrito => productoEnCarrito.id === productoAñadido.id)){
-            carrito.filter((productoEnCarrito) => productoEnCarrito.id === productoAñadido.id)
+        if(carrito.some(productoEnCarrito => productoEnCarrito.id === productoAñadido.id)){
+            productoAñadido = carrito.find(productoEnCarrito => productoEnCarrito.id === productoAñadido.id)
+            productoAñadido.cantidad += 1
+            console.log(carrito)
+            const inputCantidadAComprar = document.getElementById(`${productoAñadido.id}`).children[1].children[1].children[1]
+            inputCantidadAComprar.value = productoAñadido.cantidad
         }else{
-            carrito.find(productoEnCarrito => productoEnCarrito.id === productoAñadido.id)
             productoAñadido.cantidad += 1
             carrito.push(productoAñadido);
             divCarritoDeCompras.innerHTML += `
-            <div class="productoEnCarrito" id="${producto.id}">
+            <div class="productoEnCarrito" id="${productoAñadido.id}">
                 <div class="imagenProductoEnCarrito">
-                    <img src="${producto.img}">
+                    <img src="${productoAñadido.img}">
                 </div>
                 <div class="tituloPrecioCantidadProductoEnCarrito">
                     <div class="tituloProductoEnCarrito">
-                        <h6>${producto.nombre}</h6>
+                        <h6>${productoAñadido.nombre}</h6>
                     </div>
                     <div class="precioCantidadProductoEnCarrito">
-                        <h6>$ ${producto.precio}</h6>
-                        <input type="number" value="${producto.cantidad}">
+                        <h6>$ ${productoAñadido.precio}</h6>
+                        <input type="number" value="${productoAñadido.cantidad}">
                     </div>
                 </div>
                 <div class="eliminarProductoEnCarrito">
@@ -149,41 +150,8 @@ productos.forEach((producto) => {
         localStorage.setItem("carrito", JSON.stringify(carrito))
     })
 })
-function funcionAgregarACarrito(producto){
-        productoAñadido = {
-            id: producto.id,
-            nombre: producto.nombre,
-            precio: producto.precio,
-            img: producto.img,
-            cantidad: producto.cantidad = 0
-        }
-        if(carrito.find(productoEnCarrito => productoEnCarrito.id == productoAñadido.id)){
-            carrito.find(productoEnCarrito => productoEnCarrito.cantidad += 1)
-            console.log(carrito)
-        }else{
-            carrito.find(productoEnCarrito => productoEnCarrito.id === productoAñadido.id)
-            productoAñadido.cantidad += 1
-            carrito.push(productoAñadido);
-            divCarritoDeCompras.innerHTML += `
-            <div class="productoEnCarrito" id="${producto.id}">
-                <div class="imagenProductoEnCarrito">
-                    <img src="${producto.img}">
-                </div>
-                <div class="tituloPrecioCantidadProductoEnCarrito">
-                    <div class="tituloProductoEnCarrito">
-                        <h6>${producto.nombre}</h6>
-                    </div>
-                    <div class="precioCantidadProductoEnCarrito">
-                        <h6>$ ${producto.precio}</h6>
-                        <input type="number" value="${producto.cantidad}">
-                    </div>
-                </div>
-                <div class="eliminarProductoEnCarrito">
-                    <button>X</button>
-                </div>
-            </div>
-            `
-            console.log(carrito)
-        }
-        localStorage.setItem("carrito", JSON.stringify(carrito))
-}
+/*const inputCantidadAComprar = document.getElementById(`${productoAñadido.id}`).children[1].children[1].children[1]
+inputCantidadAComprar.addEventListener("click", () =>{
+    // llamar al producto en carrito por id y inputCantidadAComprar = productoEnCarrito.cantidad
+    // Asi puedo cambiar la cantidad a comprar con los botones del input
+})*/
