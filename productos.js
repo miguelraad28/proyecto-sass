@@ -121,8 +121,11 @@ productos.forEach((producto) => {
         if(carrito.some(productoEnCarrito => productoEnCarrito.id === productoAñadido.id)){
             productoEnCarrito = carrito.find(productoEnCarrito => productoEnCarrito.id === productoAñadido.id)
             productoEnCarrito.cantidad += 1
-            let inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoAñadido.id}`).children[1].children[1].children[1]
+            let inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1]
             inputCantidadAComprar.value = productoEnCarrito.cantidad
+            let precioTotalPorProducto = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[0]
+            precioTotalPorProducto.textContent = "$ " + (productoEnCarrito.cantidad * productoAñadido.precio)
+            productoEnCarrito.precio = productoEnCarrito.cantidad * productoAñadido.precio
             console.log(carrito)
         }else{
             productoAñadido.cantidad += 1
@@ -162,5 +165,7 @@ carrito.forEach((productoEnCarrito) => {
             productoEnCarrito.cantidad = 1
             inputCantidadAComprar.value = 1
         }
+        localStorage.setItem("carrito", JSON.stringify(carrito))
     })
 })
+// necesito actualizar precio cuando modifiquen cantidad por el input!!
