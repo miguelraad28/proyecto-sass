@@ -1,4 +1,5 @@
 let carrito = []
+// json
 if(localStorage.getItem("carrito")){
     carrito = JSON.parse(localStorage.getItem("carrito"))
     carrito.forEach(productoEnCarrito => {
@@ -25,6 +26,7 @@ if(localStorage.getItem("carrito")){
 }else{
     localStorage.setItem("carrito", JSON.stringify(carrito))
 }
+// array productos
 const productos = 
 [{id: 0, nombre: "oráculo conexión con el universo box", precio: 3990, stock: 20, img:"../images/productos/cartas/universobox.jpg"},
 {id: 1, nombre: "oráculo conexión con el universo simple", precio: 2650, stock: 35, img:"../images/productos/cartas/universosolo.jpg"},
@@ -39,7 +41,7 @@ const productos =
 {id: 10, nombre: `vela de soja "buda"`, precio: 950, stock: 20, img:"../images/productos/velas/buda.jpg"},
 {id: 11, nombre: "vela de soja de limpieza energética", precio: 920, stock: 20, img:"../images/productos/velas/limpieza.jpg"},
 {id: 12, nombre: "vela de soja de la seducción", precio: 990, stock: 9, img:"../images/productos/velas/seduccion.jpg"},]
-
+// mostrar prodctos en html
 const divProductos = document.getElementById("idDivProductos")
 productos.forEach((producto, id) => {
     divProductos.innerHTML += `
@@ -65,6 +67,7 @@ productos.forEach((producto, id) => {
     </div>
     `
 })
+// filtros busqueda
 const inputBusqueda = document.getElementById("idInputBusqueda")
 const botonBusqueda = document.getElementById("idBotonBusqueda")
 botonBusqueda.addEventListener("change", (event) =>{
@@ -106,6 +109,7 @@ function mostrarBusquedaDeProductos(resultadosDeBusqueda){
         `
     }
 }
+// agregar a carrito
 let productoEnCarrito
 let productoAñadido
 productos.forEach((producto) => {
@@ -114,6 +118,7 @@ productos.forEach((producto) => {
         productoAñadido = {
             id: producto.id,
             nombre: producto.nombre,
+            precioUnitario: producto.precio,
             precio: producto.precio,
             img: producto.img,
             cantidad: cantidad = 0
@@ -124,9 +129,8 @@ productos.forEach((producto) => {
             let inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1]
             inputCantidadAComprar.value = productoEnCarrito.cantidad
             let precioTotalPorProducto = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[0]
-            precioTotalPorProducto.textContent = "$ " + (productoEnCarrito.cantidad * productoAñadido.precio)
-            productoEnCarrito.precio = productoEnCarrito.cantidad * productoAñadido.precio
-            console.log(carrito)
+            precioTotalPorProducto.textContent = "$ " + (productoEnCarrito.cantidad * productoEnCarrito.precioUnitario)
+            productoEnCarrito.precio = productoEnCarrito.cantidad * productoEnCarrito.precioUnitario
         }else{
             productoAñadido.cantidad += 1
             productoEnCarrito = productoAñadido
@@ -150,8 +154,8 @@ productos.forEach((producto) => {
                 </div>
             </div>
             `
-            console.log(carrito)
         }
+        console.log(carrito)
         localStorage.setItem("carrito", JSON.stringify(carrito))
     })
 })
@@ -160,12 +164,14 @@ carrito.forEach((productoEnCarrito) => {
     let inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1]
     inputCantidadAComprar.addEventListener("click", () => {
         productoEnCarrito.cantidad = Number(inputCantidadAComprar.value)
-        console.log(carrito)
         if(productoEnCarrito.cantidad <= 0){
             productoEnCarrito.cantidad = 1
             inputCantidadAComprar.value = 1
         }
+        let precioTotalPorProducto = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[0]
+        precioTotalPorProducto.textContent = "$ " + (productoEnCarrito.cantidad * productoEnCarrito.precioUnitario)
+        productoEnCarrito.precio = productoEnCarrito.cantidad * productoEnCarrito.precioUnitario
+        console.log(carrito)
         localStorage.setItem("carrito", JSON.stringify(carrito))
     })
 })
-// necesito actualizar precio cuando modifiquen cantidad por el input!!
