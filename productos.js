@@ -1,19 +1,19 @@
 let carrito = []
 if(localStorage.getItem("carrito")){
     carrito = JSON.parse(localStorage.getItem("carrito"))
-    carrito.forEach(producto => {
+    carrito.forEach(productoEnCarrito => {
         divCarritoDeCompras.innerHTML += `
-        <div class="productoEnCarrito" id="${producto.id}">
+        <div class="productoEnCarrito" id="productoEnCarrito${productoEnCarrito.id}">
             <div class="imagenProductoEnCarrito">
-                <img src="${producto.img}">
+                <img src="${productoEnCarrito.img}">
             </div>
             <div class="tituloPrecioCantidadProductoEnCarrito">
                 <div class="tituloProductoEnCarrito">
-                    <h6>${producto.nombre}</h6>
+                    <h6>${productoEnCarrito.nombre}</h6>
                 </div>
                 <div class="precioCantidadProductoEnCarrito">
-                    <h6>$ ${producto.precio}</h6>
-                    <input type="number" value="${producto.cantidad}">
+                    <h6>$ ${productoEnCarrito.precio}</h6>
+                    <input type="number" value="${productoEnCarrito.cantidad}">
                 </div>
             </div>
             <div class="eliminarProductoEnCarrito">
@@ -106,6 +106,7 @@ function mostrarBusquedaDeProductos(resultadosDeBusqueda){
         `
     }
 }
+let productoEnCarrito
 let productoAñadido
 productos.forEach((producto) => {
     let botonAgregarACarrito = document.getElementById(`producto${producto.id}`).lastElementChild.lastElementChild
@@ -118,26 +119,27 @@ productos.forEach((producto) => {
             cantidad: cantidad = 0
         }
         if(carrito.some(productoEnCarrito => productoEnCarrito.id === productoAñadido.id)){
-            productoAñadido = carrito.find(productoEnCarrito => productoEnCarrito.id === productoAñadido.id)
-            productoAñadido.cantidad += 1
+            productoEnCarrito = carrito.find(productoEnCarrito => productoEnCarrito.id === productoAñadido.id)
+            productoEnCarrito.cantidad += 1
+            let inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoAñadido.id}`).children[1].children[1].children[1]
+            inputCantidadAComprar.value = productoEnCarrito.cantidad
             console.log(carrito)
-            const inputCantidadAComprar = document.getElementById(`${productoAñadido.id}`).children[1].children[1].children[1]
-            inputCantidadAComprar.value = productoAñadido.cantidad
         }else{
             productoAñadido.cantidad += 1
-            carrito.push(productoAñadido);
+            productoEnCarrito = productoAñadido
+            carrito.push(productoEnCarrito);
             divCarritoDeCompras.innerHTML += `
-            <div class="productoEnCarrito" id="${productoAñadido.id}">
+            <div class="productoEnCarrito" id="productoEnCarrito${productoEnCarrito.id}">
                 <div class="imagenProductoEnCarrito">
-                    <img src="${productoAñadido.img}">
+                    <img src="${productoEnCarrito.img}">
                 </div>
                 <div class="tituloPrecioCantidadProductoEnCarrito">
                     <div class="tituloProductoEnCarrito">
-                        <h6>${productoAñadido.nombre}</h6>
+                        <h6>${productoEnCarrito.nombre}</h6>
                     </div>
                     <div class="precioCantidadProductoEnCarrito">
-                        <h6>$ ${productoAñadido.precio}</h6>
-                        <input type="number" value="${productoAñadido.cantidad}">
+                        <h6>$ ${productoEnCarrito.precio}</h6>
+                        <input type="number" value="${productoEnCarrito.cantidad}">
                     </div>
                 </div>
                 <div class="eliminarProductoEnCarrito">
@@ -150,8 +152,3 @@ productos.forEach((producto) => {
         localStorage.setItem("carrito", JSON.stringify(carrito))
     })
 })
-/*const inputCantidadAComprar = document.getElementById(`${productoAñadido.id}`).children[1].children[1].children[1]
-inputCantidadAComprar.addEventListener("click", () =>{
-    // llamar al producto en carrito por id y inputCantidadAComprar = productoEnCarrito.cantidad
-    // Asi puedo cambiar la cantidad a comprar con los botones del input
-})*/
