@@ -152,3 +152,15 @@ productos.forEach((producto) => {
         localStorage.setItem("carrito", JSON.stringify(carrito))
     })
 })
+// cambiar cantidad con clicks en input
+carrito.forEach((productoEnCarrito) => {
+    let inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1]
+    inputCantidadAComprar.addEventListener("click", () => {
+        productoEnCarrito.cantidad = Number(inputCantidadAComprar.value)
+        console.log(carrito)
+        if(productoEnCarrito.cantidad <= 0){
+            productoEnCarrito.cantidad = 1
+            inputCantidadAComprar.value = 1
+        }
+    })
+})
