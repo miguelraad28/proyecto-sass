@@ -1,8 +1,39 @@
+class Producto {
+    constructor(id, nombre, precioUnidad, stock, img){
+    this.id = id
+    this.nombre = nombre
+    this.precioUnidad = precioUnidad
+    this.stock = stock
+    this.img = img
+    }
+    disminuirStock(){
+        this.stock -= 1
+    }
+}
+class ProductoEnCarrito {
+    constructor(id, nombre, precioUnidad, cantidad, img, precioTotal){
+        this.id = id
+        this.nombre = nombre
+        this.precioUnidad = precioUnidad
+        this.cantidad = cantidad
+        this.img = img
+        this.precioTotal = precioTotal
+    }
+    aumentarCantidad(){
+        this.cantidad += 1
+    }
+    actualizarPrecioTotal(){
+        this.precioTotal = this.precioUnidad * this.cantidad
+    }
+}
 let carrito = []
-// json
+const divCarritoDeCompras = document.getElementById("idDivCarritoDeCompras")
 if(localStorage.getItem("carrito")){
     carrito = JSON.parse(localStorage.getItem("carrito"))
+    let longitudArray = carrito.length
     carrito.forEach(productoEnCarrito => {
+        productoEnCarrito = new ProductoEnCarrito(productoEnCarrito.id, productoEnCarrito.nombre, productoEnCarrito.precioUnidad, productoEnCarrito.cantidad, productoEnCarrito.img, productoEnCarrito.precioTotal)
+        carrito.push(productoEnCarrito)
         divCarritoDeCompras.innerHTML += `
         <div class="productoEnCarrito" id="productoEnCarrito${productoEnCarrito.id}">
             <div class="imagenProductoEnCarrito">
@@ -13,7 +44,7 @@ if(localStorage.getItem("carrito")){
                     <h6>${productoEnCarrito.nombre}</h6>
                 </div>
                 <div class="precioCantidadProductoEnCarrito">
-                    <h6>$ ${productoEnCarrito.precio}</h6>
+                    <h6>$ ${productoEnCarrito.precioTotal}</h6>
                     <input type="number" value="${productoEnCarrito.cantidad}">
                 </div>
             </div>
@@ -22,31 +53,33 @@ if(localStorage.getItem("carrito")){
             </div>
         </div>
         `
+        console.log(carrito)
     })
-}else{
+    carrito.splice(0, longitudArray)
     localStorage.setItem("carrito", JSON.stringify(carrito))
+    console.log(carrito)
 }
-// array productos
-const productos = 
-[{id: 0, nombre: "oráculo conexión con el universo box", precio: 3990, stock: 20, img:"../images/productos/cartas/universobox.jpg"},
-{id: 1, nombre: "oráculo conexión con el universo simple", precio: 2650, stock: 35, img:"../images/productos/cartas/universosolo.jpg"},
-{id: 2, nombre: "lectura de cartas 45min", precio: 4800, stock: 100000, img:"../images/productos/tarot.jpg"},
-{id: 3, nombre: "kit personal 7 chakras", precio: 2650, stock: 12, img:"../images/productos/limpieza/chakras.jpg"},
-{id: 4, nombre: "spry limpieza energética sandalo y champa", precio: 650, stock: 16, img:"../images/productos/limpieza/sandaloychampa.jpg"},
-{id: 5, nombre: "spry limpieza energética de descarga", precio: 650, stock: 11, img:"../images/productos/limpieza/limpieza.jpg"},
-{id: 6, nombre: "spry limpieza energética ruda y romero", precio: 690, stock: 19, img:"../images/productos/limpieza/rudayromero.jpg"},
-{id: 7, nombre: "spry limpieza energética abundancia y fortuna", precio: 780, stock: 25, img:"../images/productos/limpieza/abundanciayfortuna.jpg"},
-{id: 8, nombre: "vela de soja de la abundancia y fortuna", precio: 890, stock: 2, img:"../images/productos/velas/abundancia.jpg"},
-{id: 9, nombre: "vela de soja del amor", precio: 890, stock: 22, img:"../images/productos/velas/amor.jpg"},
-{id: 10, nombre: `vela de soja "buda"`, precio: 950, stock: 20, img:"../images/productos/velas/buda.jpg"},
-{id: 11, nombre: "vela de soja de limpieza energética", precio: 920, stock: 20, img:"../images/productos/velas/limpieza.jpg"},
-{id: 12, nombre: "vela de soja de la seducción", precio: 990, stock: 9, img:"../images/productos/velas/seduccion.jpg"},]
-// mostrar prodctos en html
+const producto1 = new Producto (0, "oráculo conexión con el universo box", 3990, 20, "../images/productos/cartas/universobox.jpg")
+const producto2 = new Producto (1, "oráculo conexión con el universo simple", 2650, 35, "../images/productos/cartas/universosolo.jpg")
+const producto3 = new Producto (2, "lectura de cartas 45min", 4800, 100000, "../images/productos/tarot.jpg")
+const producto4 = new Producto (3, "kit personal 7 chakras", 2650, 12, "../images/productos/limpieza/chakras.jpg")
+const producto5 = new Producto (4, "spry limpieza energética sandalo y champa", 650, 16, "../images/productos/limpieza/sandaloychampa.jpg")
+const producto6 = new Producto (5, "spry limpieza energética de descarga", 650, 11, "../images/productos/limpieza/limpieza.jpg")
+const producto7 = new Producto (6, "spry limpieza energética ruda y romero", 690, 19, "../images/productos/limpieza/rudayromero.jpg")
+const producto8 = new Producto (7, "spry limpieza energética abundancia y fortuna", 780, 25, "../images/productos/limpieza/abundanciayfortuna.jpg")
+const producto9 = new Producto (8, "vela de soja de la abundancia y fortuna", 890, 2, "../images/productos/velas/abundancia.jpg")
+const producto10 = new Producto (9, "vela de soja del amor", 890, 22, "../images/productos/velas/amor.jpg")
+const producto11 = new Producto (10, `vela de soja "buda"`, 950, 20, "../images/productos/velas/buda.jpg")
+const producto12 = new Producto (11, "vela de soja de limpieza energética", 920, 20, "../images/productos/velas/limpieza.jpg")
+const producto13 = new Producto (12, "vela de soja de la seducción", 990, 9, "../images/productos/velas/seduccion.jpg")
+
+const productos = [producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10, producto11, producto12, producto13]
+
 const divProductos = document.getElementById("idDivProductos")
-productos.forEach((producto, id) => {
+productos.forEach((producto) => {
     divProductos.innerHTML += `
     <div class="producto">
-        <div class="contenedor-producto-interno" id="producto${id}">
+        <div class="contenedor-producto-interno" id="producto${producto.id}">
             <a href="#">
                 <div>
                     <img class="img-fluid imagen-producto" src="${producto.img}">
@@ -56,7 +89,7 @@ productos.forEach((producto, id) => {
                         ${producto.nombre}
                     </h3>
                     <h3 class="precio-producto">
-                        $${producto.precio}
+                        $${producto.precioUnidad}
                     </h3>
                 </div>
             </a>
@@ -67,74 +100,28 @@ productos.forEach((producto, id) => {
     </div>
     `
 })
-// filtros busqueda
-const inputBusqueda = document.getElementById("idInputBusqueda")
-const botonBusqueda = document.getElementById("idBotonBusqueda")
-botonBusqueda.addEventListener("change", (event) =>{
-    event.preventDefault()
-    busquedaDeProductos(inputBusqueda.value)
-})
-botonBusqueda.addEventListener("click", (event) =>{
-    event.preventDefault()
-    busquedaDeProductos(inputBusqueda.value)
-})
-function busquedaDeProductos(inputBusqueda){
-    resultadosDeBusqueda = productos.filter((producto) => producto.nombre.includes(inputBusqueda.toLowerCase()))
-    mostrarBusquedaDeProductos(resultadosDeBusqueda)
-}
-function mostrarBusquedaDeProductos(resultadosDeBusqueda){
-    divProductos.innerHTML = ``
-    for(let producto of resultadosDeBusqueda){
-        divProductos.innerHTML += `
-        <div class="producto">
-            <div class="contenedor-producto-interno" id="producto${producto.id}">
-                <a href="#">
-                    <div>
-                        <img class="img-fluid imagen-producto" src="${producto.img}">
-                    </div>
-                    <div class="titulo-producto">
-                        <h3 class="nombre-producto" style="text-transform: uppercase;">
-                            ${producto.nombre}
-                        </h3>
-                        <h3 class="precio-producto">
-                            $${producto.precio}
-                        </h3>
-                    </div>
-                </a>
-                <div class="div-boton-agregar">
-                    <button>Agregar al carrito</button>
-                </div>
-            </div>
-        </div>
-        `
-    }
-}
-// agregar a carrito
-let productoEnCarrito
-let productoAñadido
-productos.forEach((producto) => {
-    let botonAgregarACarrito = document.getElementById(`producto${producto.id}`).lastElementChild.lastElementChild
-    botonAgregarACarrito.addEventListener("click", () =>{
-        productoAñadido = {
-            id: producto.id,
-            nombre: producto.nombre,
-            precioUnitario: producto.precio,
-            precio: producto.precio,
-            img: producto.img,
-            cantidad: cantidad = 0
-        }
-        if(carrito.some(productoEnCarrito => productoEnCarrito.id === productoAñadido.id)){
-            productoEnCarrito = carrito.find(productoEnCarrito => productoEnCarrito.id === productoAñadido.id)
-            productoEnCarrito.cantidad += 1
-            let inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1]
-            inputCantidadAComprar.value = productoEnCarrito.cantidad
-            let precioTotalPorProducto = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[0]
-            precioTotalPorProducto.textContent = "$ " + (productoEnCarrito.cantidad * productoEnCarrito.precioUnitario)
-            productoEnCarrito.precio = productoEnCarrito.cantidad * productoEnCarrito.precioUnitario
+
+productos.forEach((producto) =>{
+    const botonAgregarACarrito = document.getElementById(`producto${producto.id}`).lastElementChild.lastElementChild
+    botonAgregarACarrito.addEventListener("click", () => {
+        let productoSeleccionado = new ProductoEnCarrito (
+            producto.id,
+            producto.nombre,
+            producto.precioUnidad,
+            0,
+            producto.img,
+            0
+        )
+        if(carrito.some(productoEnCarrito => productoEnCarrito.id === productoSeleccionado.id)){
+            let productoExistente = carrito.find(productoEnCarrito => productoEnCarrito.id === productoSeleccionado.id)
+            productoExistente.aumentarCantidad()
+            productoExistente.actualizarPrecioTotal()
+            console.log(carrito)
         }else{
-            productoAñadido.cantidad += 1
-            productoEnCarrito = productoAñadido
-            carrito.push(productoEnCarrito);
+            let productoEnCarrito = productoSeleccionado
+            productoEnCarrito.aumentarCantidad()
+            productoEnCarrito.actualizarPrecioTotal()
+            carrito.push(productoEnCarrito)
             divCarritoDeCompras.innerHTML += `
             <div class="productoEnCarrito" id="productoEnCarrito${productoEnCarrito.id}">
                 <div class="imagenProductoEnCarrito">
@@ -145,7 +132,7 @@ productos.forEach((producto) => {
                         <h6>${productoEnCarrito.nombre}</h6>
                     </div>
                     <div class="precioCantidadProductoEnCarrito">
-                        <h6>$ ${productoEnCarrito.precio}</h6>
+                        <h6>$ ${productoEnCarrito.precioTotal}</h6>
                         <input type="number" value="${productoEnCarrito.cantidad}">
                     </div>
                 </div>
@@ -154,23 +141,17 @@ productos.forEach((producto) => {
                 </div>
             </div>
             `
+            console.log(carrito)
         }
-        console.log(carrito)
         localStorage.setItem("carrito", JSON.stringify(carrito))
     })
 })
-// cambiar cantidad con clicks en input
 carrito.forEach((productoEnCarrito) => {
-    let inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1]
-    inputCantidadAComprar.addEventListener("click", () => {
-        productoEnCarrito.cantidad = Number(inputCantidadAComprar.value)
-        if(productoEnCarrito.cantidad <= 0){
-            productoEnCarrito.cantidad = 1
-            inputCantidadAComprar.value = 1
-        }
-        let precioTotalPorProducto = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[0]
-        precioTotalPorProducto.textContent = "$ " + (productoEnCarrito.cantidad * productoEnCarrito.precioUnitario)
-        productoEnCarrito.precio = productoEnCarrito.cantidad * productoEnCarrito.precioUnitario
+    const botonEliminarProductoDeCarrito = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).lastElementChild.lastElementChild
+    botonEliminarProductoDeCarrito.addEventListener("click", (productoEnCarrito, index) => {
+        document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).remove()
+        console.log(index)
+        console.log(carrito.splice(index, 1))
         console.log(carrito)
         localStorage.setItem("carrito", JSON.stringify(carrito))
     })
