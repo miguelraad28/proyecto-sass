@@ -205,7 +205,7 @@ carrito.forEach((productoEnCarrito) => {
         localStorage.setItem("carrito", JSON.stringify(carrito))
         actualizarTotalAPagar(carrito)
         actualizarLocalStorage(carrito)
-        eliminarProducto(carrito)
+        //eliminarProducto(carrito)
     })
 })
 function actualizarPrecioYCantidad(carrito){
