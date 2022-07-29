@@ -151,6 +151,7 @@ productos.forEach((producto) =>{
             actualizarPrecioYCantidad(carrito)
             actualizarTotalAPagar(carrito)
             localStorage.setItem("carrito", JSON.stringify(carrito))
+            eliminarProducto(carrito)
         }else{
             let productoEnCarrito = productoSeleccionado
             productoEnCarrito.aumentarCantidad()
@@ -177,8 +178,8 @@ productos.forEach((producto) =>{
             `
             actualizarPrecioYCantidad(carrito)
             actualizarTotalAPagar(carrito)
-            eliminarProducto(carrito)
             localStorage.setItem("carrito", JSON.stringify(carrito))
+            eliminarProducto(carrito)
         }
     })
 })
@@ -191,8 +192,8 @@ function eliminarProducto(carrito){
             carrito.splice(productoAEliminar, 1)
             localStorage.setItem("carrito", JSON.stringify(carrito))
             actualizarTotalAPagar(carrito)
-            eliminarProducto(carrito)
             actualizarLocalStorage(carrito)
+            eliminarProducto(carrito)
         })
     })
 }
