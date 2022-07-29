@@ -84,7 +84,6 @@ function actualizarLocalStorage(carrito) {
                 </div>
             </div>
             `
-            console.log(carrito)
         })
         carrito.splice(0, longitudArray)
         localStorage.setItem("carrito", JSON.stringify(carrito))
@@ -148,10 +147,7 @@ productos.forEach((producto) =>{
             let productoExistente = carrito.find(productoEnCarrito => productoEnCarrito.id === productoSeleccionado.id)
             productoExistente.aumentarCantidad()
             productoExistente.actualizarPrecioTotal()
-            const inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoExistente.id}`).children[1].children[1].children[1]
-            inputCantidadAComprar.value = productoExistente.cantidad
-            const divPrecioTotal = document.getElementById(`productoEnCarrito${productoExistente.id}`).children[1].children[1].children[0]
-            divPrecioTotal.textContent = "$ " + productoExistente.precioTotal
+            actualizarPrecioYCantidad(carrito)
             localStorage.setItem("carrito", JSON.stringify(carrito))
         }else{
             let productoEnCarrito = productoSeleccionado
@@ -177,12 +173,13 @@ productos.forEach((producto) =>{
                 </div>
             </div>
             `
+            actualizarPrecioYCantidad(carrito)
             localStorage.setItem("carrito", JSON.stringify(carrito))
-            eliminarProductoSinActualizarPagina(carrito)
+            eliminarProducto(carrito)
         }
     })
 })
-function eliminarProductoSinActualizarPagina(carrito){
+function eliminarProducto(carrito){
     carrito.forEach((productoEnCarrito) => {
         const botonEliminarProductoDeCarrito = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).lastElementChild.lastElementChild
         botonEliminarProductoDeCarrito.addEventListener("click", () => {
@@ -191,7 +188,7 @@ function eliminarProductoSinActualizarPagina(carrito){
             carrito.splice(productoAEliminar, 1)
             localStorage.setItem("carrito", JSON.stringify(carrito))
             actualizarLocalStorage(carrito)
-            eliminarProductoSinActualizarPagina(carrito)
+            eliminarProducto(carrito)
         })
     })
 }
@@ -203,6 +200,14 @@ carrito.forEach((productoEnCarrito) => {
         carrito.splice(productoAEliminar, 1)
         localStorage.setItem("carrito", JSON.stringify(carrito))
         actualizarLocalStorage(carrito)
-        eliminarProductoSinActualizarPagina(carrito)
+        eliminarProducto(carrito)
     })
 })
+function actualizarPrecioYCantidad(carrito){
+    carrito.forEach((productoEnCarrito) => {
+        const inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoExistente.id}`).children[1].children[1].children[1]
+        inputCantidadAComprar.value = productoEnCarrito.cantidad
+        const divPrecioTotal = document.getElementById(`productoEnCarrito${productoExistente.id}`).children[1].children[1].children[0]
+        divPrecioTotal.textContent = "$ " + productoEnCarrito.precioTotal
+    })
+}
