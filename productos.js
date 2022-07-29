@@ -177,8 +177,8 @@ productos.forEach((producto) =>{
             `
             actualizarPrecioYCantidad(carrito)
             actualizarTotalAPagar(carrito)
-            localStorage.setItem("carrito", JSON.stringify(carrito))
             eliminarProducto(carrito)
+            localStorage.setItem("carrito", JSON.stringify(carrito))
         }
     })
 })
@@ -191,8 +191,8 @@ function eliminarProducto(carrito){
             carrito.splice(productoAEliminar, 1)
             localStorage.setItem("carrito", JSON.stringify(carrito))
             actualizarTotalAPagar(carrito)
-            actualizarLocalStorage(carrito)
             eliminarProducto(carrito)
+            actualizarLocalStorage(carrito)
         })
     })
 }
