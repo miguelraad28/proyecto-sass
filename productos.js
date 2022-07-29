@@ -53,12 +53,44 @@ if(localStorage.getItem("carrito")){
             </div>
         </div>
         `
-        console.log(carrito)
     })
     carrito.splice(0, longitudArray)
     localStorage.setItem("carrito", JSON.stringify(carrito))
-    console.log(carrito)
 }
+function actualizarLocalStorage(carrito) {
+    if(localStorage.getItem("carrito")){
+        carrito = JSON.parse(localStorage.getItem("carrito"))
+        let longitudArray = carrito.length
+        divCarritoDeCompras.innerHTML = ``
+        carrito.forEach(productoEnCarrito => {
+            productoEnCarrito = new ProductoEnCarrito(productoEnCarrito.id, productoEnCarrito.nombre, productoEnCarrito.precioUnidad, productoEnCarrito.cantidad, productoEnCarrito.img, productoEnCarrito.precioTotal)
+            carrito.push(productoEnCarrito)
+            divCarritoDeCompras.innerHTML += `
+            <div class="productoEnCarrito" id="productoEnCarrito${productoEnCarrito.id}">
+                <div class="imagenProductoEnCarrito">
+                    <img src="${productoEnCarrito.img}">
+                </div>
+                <div class="tituloPrecioCantidadProductoEnCarrito">
+                    <div class="tituloProductoEnCarrito">
+                        <h6>${productoEnCarrito.nombre}</h6>
+                    </div>
+                    <div class="precioCantidadProductoEnCarrito">
+                        <h6>$ ${productoEnCarrito.precioTotal}</h6>
+                        <input type="number" value="${productoEnCarrito.cantidad}">
+                    </div>
+                </div>
+                <div class="eliminarProductoEnCarrito">
+                    <button>X</button>
+                </div>
+            </div>
+            `
+            console.log(carrito)
+        })
+        carrito.splice(0, longitudArray)
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+    }
+}
+
 const producto1 = new Producto (0, "oráculo conexión con el universo box", 3990, 20, "../images/productos/cartas/universobox.jpg")
 const producto2 = new Producto (1, "oráculo conexión con el universo simple", 2650, 35, "../images/productos/cartas/universosolo.jpg")
 const producto3 = new Producto (2, "lectura de cartas 45min", 4800, 100000, "../images/productos/tarot.jpg")
@@ -116,7 +148,11 @@ productos.forEach((producto) =>{
             let productoExistente = carrito.find(productoEnCarrito => productoEnCarrito.id === productoSeleccionado.id)
             productoExistente.aumentarCantidad()
             productoExistente.actualizarPrecioTotal()
-            console.log(carrito)
+            const inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoExistente.id}`).children[1].children[1].children[1]
+            inputCantidadAComprar.value = productoExistente.cantidad
+            const divPrecioTotal = document.getElementById(`productoEnCarrito${productoExistente.id}`).children[1].children[1].children[0]
+            divPrecioTotal.textContent = "$ " + productoExistente.precioTotal
+            localStorage.setItem("carrito", JSON.stringify(carrito))
         }else{
             let productoEnCarrito = productoSeleccionado
             productoEnCarrito.aumentarCantidad()
@@ -141,18 +177,32 @@ productos.forEach((producto) =>{
                 </div>
             </div>
             `
-            console.log(carrito)
+            localStorage.setItem("carrito", JSON.stringify(carrito))
+            eliminarProductoSinActualizarPagina(carrito)
         }
-        localStorage.setItem("carrito", JSON.stringify(carrito))
     })
 })
+function eliminarProductoSinActualizarPagina(carrito){
+    carrito.forEach((productoEnCarrito) => {
+        const botonEliminarProductoDeCarrito = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).lastElementChild.lastElementChild
+        botonEliminarProductoDeCarrito.addEventListener("click", () => {
+            productoAEliminar = carrito.indexOf(productoEnCarrito)
+            document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).remove()
+            carrito.splice(productoAEliminar, 1)
+            localStorage.setItem("carrito", JSON.stringify(carrito))
+            actualizarLocalStorage(carrito)
+            eliminarProductoSinActualizarPagina(carrito)
+        })
+    })
+}
 carrito.forEach((productoEnCarrito) => {
     const botonEliminarProductoDeCarrito = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).lastElementChild.lastElementChild
-    botonEliminarProductoDeCarrito.addEventListener("click", (productoEnCarrito, index) => {
+    botonEliminarProductoDeCarrito.addEventListener("click", () => {
+        productoAEliminar = carrito.indexOf(productoEnCarrito)
         document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).remove()
-        console.log(index)
-        console.log(carrito.splice(index, 1))
-        console.log(carrito)
+        carrito.splice(productoAEliminar, 1)
         localStorage.setItem("carrito", JSON.stringify(carrito))
+        actualizarLocalStorage(carrito)
+        eliminarProductoSinActualizarPagina(carrito)
     })
 })
