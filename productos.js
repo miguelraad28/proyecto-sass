@@ -56,6 +56,7 @@ if(localStorage.getItem("carrito")){
     })
     carrito.splice(0, longitudArray)
     localStorage.setItem("carrito", JSON.stringify(carrito))
+    actualizarTotalAPagar(carrito)
 }
 function actualizarLocalStorage(carrito) {
     if(localStorage.getItem("carrito")){
@@ -148,6 +149,7 @@ productos.forEach((producto) =>{
             productoExistente.aumentarCantidad()
             productoExistente.actualizarPrecioTotal()
             actualizarPrecioYCantidad(carrito)
+            actualizarTotalAPagar(carrito)
             localStorage.setItem("carrito", JSON.stringify(carrito))
         }else{
             let productoEnCarrito = productoSeleccionado
@@ -174,6 +176,7 @@ productos.forEach((producto) =>{
             </div>
             `
             actualizarPrecioYCantidad(carrito)
+            actualizarTotalAPagar(carrito)
             localStorage.setItem("carrito", JSON.stringify(carrito))
             eliminarProducto(carrito)
         }
@@ -187,6 +190,7 @@ function eliminarProducto(carrito){
             document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).remove()
             carrito.splice(productoAEliminar, 1)
             localStorage.setItem("carrito", JSON.stringify(carrito))
+            actualizarTotalAPagar(carrito)
             actualizarLocalStorage(carrito)
             eliminarProducto(carrito)
         })
@@ -199,15 +203,26 @@ carrito.forEach((productoEnCarrito) => {
         document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).remove()
         carrito.splice(productoAEliminar, 1)
         localStorage.setItem("carrito", JSON.stringify(carrito))
+        actualizarTotalAPagar(carrito)
         actualizarLocalStorage(carrito)
         eliminarProducto(carrito)
     })
 })
 function actualizarPrecioYCantidad(carrito){
     carrito.forEach((productoEnCarrito) => {
-        const inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoExistente.id}`).children[1].children[1].children[1]
+        const inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1]
         inputCantidadAComprar.value = productoEnCarrito.cantidad
-        const divPrecioTotal = document.getElementById(`productoEnCarrito${productoExistente.id}`).children[1].children[1].children[0]
+        const divPrecioTotal = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[0]
         divPrecioTotal.textContent = "$ " + productoEnCarrito.precioTotal
     })
+}
+
+function actualizarTotalAPagar(carrito){
+    let acumulador = 0
+    const totalAPagarPorProducto = (carrito.map(productoEnCarrito => productoEnCarrito.precioTotal))
+    totalAPagarPorProducto.forEach((totalPorProducto) => {
+        acumulador += totalPorProducto
+    })
+    const totalAPagar = document.getElementById(`idTotalAPagar`)
+    totalAPagar.textContent = ": $ " + acumulador
 }
