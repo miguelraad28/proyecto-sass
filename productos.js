@@ -19,10 +19,8 @@ class ProductoEnCarrito {
         this.img = img
         this.precioTotal = precioTotal
     }
-    aumentarCantidad(){
+    actualizarProductoEnCarrito(){
         this.cantidad += 1
-    }
-    actualizarPrecioTotal(){
         this.precioTotal = this.precioUnidad * this.cantidad
     }
 }
@@ -187,15 +185,13 @@ productos.forEach((producto) =>{
         )
         if(carrito.some(productoEnCarrito => productoEnCarrito.id === productoSeleccionado.id)){
             let productoExistente = carrito.find(productoEnCarrito => productoEnCarrito.id === productoSeleccionado.id)
-            productoExistente.aumentarCantidad()
-            productoExistente.actualizarPrecioTotal()
+            productoExistente.actualizarProductoEnCarrito()
             actualizarPrecioYCantidad(carrito)
             actualizarTotalAPagar(carrito)
             localStorage.setItem("carrito", JSON.stringify(carrito))
         }else{
             let productoEnCarrito = productoSeleccionado
-            productoEnCarrito.aumentarCantidad()
-            productoEnCarrito.actualizarPrecioTotal()
+            productoEnCarrito.actualizarProductoEnCarrito()
             carrito.push(productoEnCarrito)
             divCarritoDeCompras.innerHTML += `
             <div class="productoEnCarrito" id="productoEnCarrito${productoEnCarrito.id}">
