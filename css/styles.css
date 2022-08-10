@@ -511,9 +511,14 @@ footer {
   justify-content: center;
   margin: 50px 20px;
   gap: 10px; }
-  .iniciar-sesion .boton-iniciar-sesion {
+  .iniciar-sesion form div {
+    margin-bottom: 10px; }
+  .iniciar-sesion form button {
+    width: 100%;
+    margin-bottom: 10px; }
+  .iniciar-sesion .boton-accionar-rosa {
     color: #932e4e;
     border-color: #f373aa; }
-    .iniciar-sesion .boton-iniciar-sesion:focus {
+    .iniciar-sesion .boton-accionar-rosa:focus {
       background-color: #d9548e;
       color: black; }

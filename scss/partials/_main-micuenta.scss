@@ -3,7 +3,16 @@
 .iniciar-sesion{
     text-align: center;
     @include form-contacto-inicio-sesion;
-    .boton-iniciar-sesion{
+    form{
+        div{
+            margin-bottom: 10px;
+        }
+        button{
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+    .boton-accionar-rosa{
         @include boton-accionar-rosa;
     }
 }
