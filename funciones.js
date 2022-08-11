@@ -8,7 +8,7 @@ function imprimirListaDeProductos(productos){
             <div class="contenedor-producto-interno" id="producto${producto.id}">
                 <a href="#">
                     <div>
-                        <img class="img-fluid imagen-producto" src="${producto.img}">
+                        <img class="img-fluid imagen-producto" src="../images/${producto.img}">
                     </div>
                     <div class="titulo-producto">
                         <h3 class="nombre-producto" style="text-transform: uppercase;">
@@ -68,7 +68,7 @@ function añadirProductoNuevoACarrito(productoSeleccionado){
     divCarritoDeCompras.innerHTML += `
     <div class="productoEnCarrito" id="productoEnCarrito${productoEnCarrito.id}">
         <div class="imagenProductoEnCarrito">
-            <img src="${productoEnCarrito.img}">
+            <img src="../images/${productoEnCarrito.img}">
         </div>
         <div class="tituloPrecioCantidadProductoEnCarrito">
             <div class="tituloProductoEnCarrito">
