@@ -3,8 +3,7 @@ let carrito = []
 const divCarritoDeCompras = document.getElementById("idDivCarritoDeCompras")
 function cargarCarritoLocal(){
     let HTMLActual = window.location.pathname
-    console.log(HTMLActual)
-    if(HTMLActual === "/index.html"){
+    if(HTMLActual === "/proyecto-sass/index.html"){
         innerCarritoRoot()
     }else{
         innerCarritoPages()
