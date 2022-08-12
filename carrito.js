@@ -60,7 +60,7 @@ function innerCarritoRoot(){
 }
 function cargarCarritoLocal(){
     let HTMLActual = window.location.pathname
-    if(HTMLActual === "/proyecto-sass"){
+    if((HTMLActual === "/proyecto-sass/index.html") || (HTMLActual === "/proyecto-sass")){
         innerCarritoRoot()
     }else{
         innerCarritoPages()
