@@ -5,7 +5,6 @@ fetch("../api.json")
 .then(data => {
     productos = data
     imprimirListaDeProductos(productos)
-    return productos
 })
 const inputBusqueda = document.getElementById("idInputBusqueda")
 const botonBusqueda = document.getElementById("idBotonBusqueda")
