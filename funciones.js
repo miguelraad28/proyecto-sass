@@ -83,6 +83,18 @@ function listenerAgregarACarrito(productos){
             }else{
                 añadirProductoNuevoACarrito(productoSeleccionado)
             }
+            Toastify({
+                text: "Producto agregado al carrito",
+                duration: 2000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    color: "black",
+                    background: "linear-gradient(to top, #ffb3d3, #ffc2dc)",
+                },
+            }).showToast();
             eliminarProducto(carrito)
         })
     })
