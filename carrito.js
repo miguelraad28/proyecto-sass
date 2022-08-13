@@ -62,7 +62,7 @@ function innerCarritoRoot(){
 }
 function cargarCarritoLocal(){
     let HTMLActual = window.location.pathname
-    (HTMLActual == "/proyecto-sass" || HTMLActual == "/proyecto-sass/index.html") ? innerCarritoRoot() : innerCarritoPages();
+    HTMLActual == "/proyecto-sass" ? innerCarritoRoot() : innerCarritoPages();
 }
 cargarCarritoLocal()
 export {carrito, divCarritoDeCompras};
