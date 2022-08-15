@@ -1,5 +1,23 @@
 import {carrito, divCarritoDeCompras} from "./carrito.js"
 const divProductos = document.getElementById("idDivProductos")
+function actualizarCantidadPorInput(carrito){
+    carrito.forEach((productoEnCarrito) =>{
+        const inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1]
+        inputCantidadAComprar.addEventListener("change", () => {
+            if(inputCantidadAComprar.value < 1){
+                inputCantidadAComprar.value = 1
+                productoEnCarrito.cantidad = inputCantidadAComprar.value
+            }else{
+                productoEnCarrito.cantidad = inputCantidadAComprar.value
+                productoEnCarrito.precioTotal = productoEnCarrito.precioUnidad * productoEnCarrito.cantidad
+                const divPrecioTotal = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[0]
+                divPrecioTotal.textContent = `$${productoEnCarrito.precioTotal}`
+                localStorage.setItem("carrito", JSON.stringify(carrito))
+                actualizarTotalAPagar(carrito)
+            }
+        })
+    })
+}
 function actualizarProductoEnCarrito(producto){
     producto.cantidad += 1
     producto.precioTotal = producto.precioUnidad * producto.cantidad
@@ -95,7 +113,6 @@ function listenerAgregarACarrito(productos){
                     background: "linear-gradient(to top, #ffb3d3, #ffc2dc)",
                 },
             }).showToast();
-            eliminarProducto(carrito)
         })
     })
 }
@@ -126,10 +143,12 @@ function imprimirListaDeProductos(productos){
         `
     })
     listenerAgregarACarrito(productos)
+    actualizarCantidadPorInput(carrito)
+    eliminarProducto(carrito)
 }
 function busquedaDeProductos(inputBusqueda, productos){
     let resultadosDeBusqueda = productos.filter((producto) => producto.nombre.includes(inputBusqueda.toLowerCase()))
     imprimirListaDeProductos(resultadosDeBusqueda)
     return resultadosDeBusqueda
 }
-export {imprimirListaDeProductos, busquedaDeProductos, actualizarTotalAPagar, eliminarProducto}
+export {imprimirListaDeProductos, busquedaDeProductos, actualizarTotalAPagar, actualizarCantidadPorInput, eliminarProducto}
