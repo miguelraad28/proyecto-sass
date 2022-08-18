@@ -34,6 +34,9 @@
         }
     }
 }
+.stickynav{
+    position: sticky;
+}
 .navbar-contenedor{
     background-color: $color-nav;
     color: black;

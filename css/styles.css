@@ -41,6 +41,9 @@
   0% {
     opacity: 0%; } }
 
+.stickynav {
+  position: sticky; }
+
 .navbar-contenedor {
   background-color: #ff98c4;
   color: black;
@@ -205,13 +208,18 @@ footer {
     justify-content: flex-start;
     margin-left: 8px;
     grid-area: precio; }
-    .tituloPrecioCantidadProductoEnCarrito .precioCantidadProductoEnCarrito input {
-      text-align: center;
-      border: 1px solid gray;
-      border-radius: 5px;
-      width: 40px;
+  .tituloPrecioCantidadProductoEnCarrito .botonesCantidadProductoEnCarrito {
+    display: flex;
+    margin-left: 5px;
+    grid-area: cantidad; }
+    .tituloPrecioCantidadProductoEnCarrito .botonesCantidadProductoEnCarrito button {
+      display: flex;
       height: 20px;
-      margin-left: 5px; }
+      padding: 7px 7px 10px;
+      align-items: center; }
+    .tituloPrecioCantidadProductoEnCarrito .botonesCantidadProductoEnCarrito .btn-cantidad {
+      border: 1px solid black;
+      background-color: white; }
 
 .eliminarProductoEnCarrito {
   grid-area: eliminar;

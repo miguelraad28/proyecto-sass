@@ -14,37 +14,46 @@ function noHayMasEnStock(){
         },
     }).showToast();
 }
-function actualizarCantidadPorInput(carrito){
-    carrito.forEach((productoEnCarrito) =>{
-        const inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1]
-        inputCantidadAComprar.addEventListener("change", () => {
-            if(inputCantidadAComprar.value < 1){
-                inputCantidadAComprar.value = 1
-                productoEnCarrito.cantidad = inputCantidadAComprar.value
+function cambiarCantidadPorBotones(carrito){
+    carrito.forEach((productoEnCarrito) => {
+        const cantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1].children[1]
+        const sumarCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1].children[2]
+        const restarCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1].children[0]
+        sumarCantidadAComprar.addEventListener("click", () => {
+            if(productoEnCarrito.cantidad == productoEnCarrito.stock){
+                noHayMasEnStock()
             }else{
-                productoEnCarrito.cantidad = inputCantidadAComprar.value
-                productoEnCarrito.precioTotal = productoEnCarrito.precioUnidad * productoEnCarrito.cantidad
-                const divPrecioTotal = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[0]
-                divPrecioTotal.textContent = `$${productoEnCarrito.precioTotal}`
-                localStorage.setItem("carrito", JSON.stringify(carrito))
-                actualizarTotalAPagar(carrito)
+                productoEnCarrito.cantidad += 1
+                productoEnCarrito.precioTotal = productoEnCarrito.cantidad * productoEnCarrito.precioUnidad
+                actualizarPrecioYCantidad(carrito)
             }
+            localStorage.setItem("carrito", JSON.stringify(carrito))
+        })
+        restarCantidadAComprar.addEventListener("click", () => {
+            if(cantidadAComprar.textContent == 1){
+            }else{
+                productoEnCarrito.cantidad -= 1
+                productoEnCarrito.precioTotal = productoEnCarrito.cantidad * productoEnCarrito.precioUnidad
+                actualizarPrecioYCantidad(carrito)
+            }
+            localStorage.setItem("carrito", JSON.stringify(carrito))
         })
     })
+    
 }
 function actualizarProductoEnCarrito(producto){
-    producto.cantidad += 1
+    producto.cantidad++
     producto.precioTotal = producto.precioUnidad * producto.cantidad
 }
 function actualizarPrecioYCantidad(carrito){
     carrito.forEach((productoEnCarrito) => {
-        const inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1]
-        inputCantidadAComprar.value = productoEnCarrito.cantidad
+        const cantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1].children[1]
+        cantidadAComprar.textContent = productoEnCarrito.cantidad
         const divPrecioTotal = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[0]
         divPrecioTotal.textContent = `$${productoEnCarrito.precioTotal}`
     })
 }
-function actualizarTotalAPagar(carrito){
+function actualizarTotalDeCarrito(carrito){
     let acumulador = 0
     const totalAPagarPorProducto = (carrito.map(productoEnCarrito => productoEnCarrito.precioTotal))
     totalAPagarPorProducto.forEach((totalPorProducto) => {
@@ -60,19 +69,18 @@ function eliminarProducto(carrito){
             document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).remove()
             carrito.splice(carrito.indexOf(productoEnCarrito), 1)
             localStorage.setItem("carrito", JSON.stringify(carrito))
-            actualizarTotalAPagar(carrito)
+            actualizarTotalDeCarrito(carrito)
         })
     })
 }
-function añadirProductoExistenteACarrito(productos, productoSeleccionado){
-    let productoEnLista = productos.find((producto) => producto.id == productoSeleccionado.id)
+function añadirProductoExistenteACarrito(productoSeleccionado){
     let productoExistente = carrito.find(productoEnCarrito => productoEnCarrito.id === productoSeleccionado.id)
-    if(productoExistente.cantidad >= productoEnLista.stock){
+    if(productoExistente.cantidad == productoExistente.stock){
         noHayMasEnStock()
     }else{
         actualizarProductoEnCarrito(productoExistente)
         actualizarPrecioYCantidad(carrito)
-        actualizarTotalAPagar(carrito)
+        actualizarTotalDeCarrito(carrito)
         Toastify({
             text: "Producto agregado al carrito",
             duration: 2000,
@@ -87,11 +95,9 @@ function añadirProductoExistenteACarrito(productos, productoSeleccionado){
         }).showToast();
         localStorage.setItem("carrito", JSON.stringify(carrito))
     }
-    actualizarCantidadPorInput(carrito)
 }
-function añadirProductoNuevoACarrito(productos, productoSeleccionado){
-    let productoEnLista = productos.find((producto) => producto.id == productoSeleccionado.id)
-    if(productoEnLista.stock <= 0){
+function añadirProductoNuevoACarrito(productoSeleccionado){
+    if(productoSeleccionado.stock <= 0){
         noHayMasEnStock()
     }else{
         let productoEnCarrito = productoSeleccionado
@@ -108,7 +114,11 @@ function añadirProductoNuevoACarrito(productos, productoSeleccionado){
                 </div>
                 <div class="precioCantidadProductoEnCarrito">
                     <h6>$ ${productoEnCarrito.precioTotal}</h6>
-                    <input type="number" value="${productoEnCarrito.cantidad}">
+                    <div class="btn-group botonesCantidadProductoEnCarrito" role="group">
+                        <button type="button" class="btn btn-outline-danger">-</button>
+                        <button type="button" class="btn-cantidad">${productoEnCarrito.cantidad}</button>
+                        <button type="button" class="btn btn-outline-success">+</button>
+                    </div>
                 </div>
             </div>
             <div class="eliminarProductoEnCarrito">
@@ -117,7 +127,7 @@ function añadirProductoNuevoACarrito(productos, productoSeleccionado){
         </div>
         `
         actualizarPrecioYCantidad(carrito)
-        actualizarTotalAPagar(carrito)
+        actualizarTotalDeCarrito(carrito)
         Toastify({
             text: "Producto agregado al carrito",
             duration: 2000,
@@ -133,9 +143,7 @@ function añadirProductoNuevoACarrito(productos, productoSeleccionado){
         localStorage.setItem("carrito", JSON.stringify(carrito))
     }
     eliminarProducto(carrito)
-    actualizarCantidadPorInput(carrito)
 }
-
 function listenerAgregarACarrito(productos){
     productos.forEach((producto) =>{
         const botonAgregarACarrito = document.getElementById(`producto${producto.id}`).lastElementChild.lastElementChild
@@ -145,13 +153,15 @@ function listenerAgregarACarrito(productos){
                 nombre: producto.nombre,
                 precioUnidad: producto.precioUnidad,
                 cantidad: 0,
+                stock: producto.stock,
                 img: producto.img,
                 precioTotal: 0
             }
             if(carrito.some(productoEnCarrito => productoEnCarrito.id === productoSeleccionado.id)){
-                añadirProductoExistenteACarrito(productos, productoSeleccionado)
+                añadirProductoExistenteACarrito(productoSeleccionado)
             }else{
-                añadirProductoNuevoACarrito(productos, productoSeleccionado)
+                añadirProductoNuevoACarrito(productoSeleccionado)
+                cambiarCantidadPorBotones(carrito)
             }
         })
     })
@@ -189,4 +199,4 @@ function busquedaDeProductos(inputBusqueda, productos){
     imprimirListaDeProductos(resultadosDeBusqueda)
     return resultadosDeBusqueda
 }
-export {imprimirListaDeProductos, busquedaDeProductos, actualizarTotalAPagar, actualizarCantidadPorInput, eliminarProducto}
+export {imprimirListaDeProductos, busquedaDeProductos, actualizarTotalDeCarrito, cambiarCantidadPorBotones, eliminarProducto}
