@@ -70,6 +70,18 @@ function eliminarProducto(carrito){
             carrito.splice(carrito.indexOf(productoEnCarrito), 1)
             localStorage.setItem("carrito", JSON.stringify(carrito))
             actualizarTotalDeCarrito(carrito)
+            Toastify({
+                text: "Producto eliminado.",
+                duration: 1200,
+                close: true,
+                gravity: "bottom",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    color: "white",
+                    background: "linear-gradient(to top, #C2005E, #D5007B)",
+                },
+            }).showToast();
         })
     })
 }

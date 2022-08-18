@@ -30,9 +30,6 @@ function innerCarritoPages(){
             </div>
             `
         })
-        cambiarCantidadPorBotones(carrito)
-        actualizarTotalDeCarrito(carrito)
-        eliminarProducto(carrito)
     }
 }
 function innerCarritoRoot(){
@@ -63,14 +60,14 @@ function innerCarritoRoot(){
             </div>
             `
         })
-        cambiarCantidadPorBotones(carrito)
-        actualizarTotalDeCarrito(carrito)
-        eliminarProducto(carrito)
     }
 }
 function cargarCarritoLocal(){
     let HTMLActual = window.location.pathname;
     HTMLActual === "/proyecto-sass/" ? innerCarritoRoot() : innerCarritoPages();
+    cambiarCantidadPorBotones(carrito)
+    actualizarTotalDeCarrito(carrito)
+    eliminarProducto(carrito)
 }
 cargarCarritoLocal()
 export {carrito, divCarritoDeCompras};
