@@ -1,6 +1,7 @@
 import {actualizarTotalDeCarrito, cambiarCantidadPorBotones, eliminarProducto} from "./funciones.js"
 let carrito = []
 const divCarritoDeCompras = document.getElementById("idDivCarritoDeCompras")
+const botonFinalizarCompra = document.getElementById("divBotonFinalizarCompra")
 // Estas funciones están realizadas con el fin de ver el carrito y sus imagenes correctamente en todos los html, si estas en la carpeta pages, la ruta de las imagenes seria yendo para atrás ../ y entrando a /images. Debido a eso, creé otra función para si estas en index.html (carpeta root), para acceder a las imágenes no salga de ninguna carpeta, es decir, entre directamente a images/productos/... y no ../images/productos...
 function innerCarritoPages(){
     if(localStorage.getItem("carrito")){
@@ -70,4 +71,7 @@ function cargarCarritoLocal(){
     eliminarProducto(carrito)
 }
 cargarCarritoLocal()
+botonFinalizarCompra.addEventListener("click", () => {
+    console.log("hola")
+})
 export {carrito, divCarritoDeCompras};

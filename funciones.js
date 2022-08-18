@@ -25,6 +25,7 @@ function cambiarCantidadPorBotones(carrito){
             }else{
                 productoEnCarrito.cantidad += 1
                 productoEnCarrito.precioTotal = productoEnCarrito.cantidad * productoEnCarrito.precioUnidad
+                actualizarTotalDeCarrito(carrito)
                 actualizarPrecioYCantidad(carrito)
             }
             localStorage.setItem("carrito", JSON.stringify(carrito))
@@ -34,6 +35,7 @@ function cambiarCantidadPorBotones(carrito){
             }else{
                 productoEnCarrito.cantidad -= 1
                 productoEnCarrito.precioTotal = productoEnCarrito.cantidad * productoEnCarrito.precioUnidad
+                actualizarTotalDeCarrito(carrito)
                 actualizarPrecioYCantidad(carrito)
             }
             localStorage.setItem("carrito", JSON.stringify(carrito))
