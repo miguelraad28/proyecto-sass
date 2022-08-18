@@ -1,5 +1,19 @@
 import {carrito, divCarritoDeCompras} from "./carrito.js"
 const divProductos = document.getElementById("idDivProductos")
+function noHayMasEnStock(){
+    Toastify({
+        text: "No hay más en stock, lo sentimos.",
+        duration: 2000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+            color: "black",
+            background: "linear-gradient(to top, #FF656E, #FF65A6)",
+        },
+    }).showToast();
+}
 function actualizarCantidadPorInput(carrito){
     carrito.forEach((productoEnCarrito) =>{
         const inputCantidadAComprar = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).children[1].children[1].children[1]
@@ -39,40 +53,6 @@ function actualizarTotalAPagar(carrito){
     const totalAPagar = document.getElementById(`idTotalAPagar`)
     totalAPagar.innerHTML = `: <b>$${acumulador}</b>`
 }
-function añadirProductoExistenteACarrito(productoSeleccionado){
-    let productoExistente = carrito.find(productoEnCarrito => productoEnCarrito.id === productoSeleccionado.id)
-    actualizarProductoEnCarrito(productoExistente)
-    actualizarPrecioYCantidad(carrito)
-    actualizarTotalAPagar(carrito)
-    localStorage.setItem("carrito", JSON.stringify(carrito))
-}
-function añadirProductoNuevoACarrito(productoSeleccionado){
-    let productoEnCarrito = productoSeleccionado
-    actualizarProductoEnCarrito(productoEnCarrito)
-    carrito.push(productoEnCarrito)
-    divCarritoDeCompras.innerHTML += `
-    <div class="productoEnCarrito" id="productoEnCarrito${productoEnCarrito.id}">
-        <div class="imagenProductoEnCarrito">
-            <img src="../images/${productoEnCarrito.img}">
-        </div>
-        <div class="tituloPrecioCantidadProductoEnCarrito">
-            <div class="tituloProductoEnCarrito">
-                <h6>${productoEnCarrito.nombre}</h6>
-            </div>
-            <div class="precioCantidadProductoEnCarrito">
-                <h6>$ ${productoEnCarrito.precioTotal}</h6>
-                <input type="number" value="${productoEnCarrito.cantidad}">
-            </div>
-        </div>
-        <div class="eliminarProductoEnCarrito">
-            <button>X</button>
-        </div>
-    </div>
-    `
-    actualizarPrecioYCantidad(carrito)
-    actualizarTotalAPagar(carrito)
-    localStorage.setItem("carrito", JSON.stringify(carrito))
-}
 function eliminarProducto(carrito){
     carrito.forEach((productoEnCarrito) => {
         const botonEliminarProductoDeCarrito = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).lastElementChild.lastElementChild
@@ -84,6 +64,78 @@ function eliminarProducto(carrito){
         })
     })
 }
+function añadirProductoExistenteACarrito(productos, productoSeleccionado){
+    let productoEnLista = productos.find((producto) => producto.id == productoSeleccionado.id)
+    let productoExistente = carrito.find(productoEnCarrito => productoEnCarrito.id === productoSeleccionado.id)
+    if(productoExistente.cantidad >= productoEnLista.stock){
+        noHayMasEnStock()
+    }else{
+        actualizarProductoEnCarrito(productoExistente)
+        actualizarPrecioYCantidad(carrito)
+        actualizarTotalAPagar(carrito)
+        Toastify({
+            text: "Producto agregado al carrito",
+            duration: 2000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                color: "black",
+                background: "linear-gradient(to top, #ffb3d3, #ffc2dc)",
+            },
+        }).showToast();
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+    }
+    actualizarCantidadPorInput(carrito)
+}
+function añadirProductoNuevoACarrito(productos, productoSeleccionado){
+    let productoEnLista = productos.find((producto) => producto.id == productoSeleccionado.id)
+    if(productoEnLista.stock <= 0){
+        noHayMasEnStock()
+    }else{
+        let productoEnCarrito = productoSeleccionado
+        actualizarProductoEnCarrito(productoEnCarrito)
+        carrito.push(productoEnCarrito)
+        divCarritoDeCompras.innerHTML += `
+        <div class="productoEnCarrito" id="productoEnCarrito${productoEnCarrito.id}">
+            <div class="imagenProductoEnCarrito">
+                <img src="../images/${productoEnCarrito.img}">
+            </div>
+            <div class="tituloPrecioCantidadProductoEnCarrito">
+                <div class="tituloProductoEnCarrito">
+                    <h6>${productoEnCarrito.nombre}</h6>
+                </div>
+                <div class="precioCantidadProductoEnCarrito">
+                    <h6>$ ${productoEnCarrito.precioTotal}</h6>
+                    <input type="number" value="${productoEnCarrito.cantidad}">
+                </div>
+            </div>
+            <div class="eliminarProductoEnCarrito">
+                <button>X</button>
+            </div>
+        </div>
+        `
+        actualizarPrecioYCantidad(carrito)
+        actualizarTotalAPagar(carrito)
+        Toastify({
+            text: "Producto agregado al carrito",
+            duration: 2000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                color: "black",
+                background: "linear-gradient(to top, #ffb3d3, #ffc2dc)",
+            },
+        }).showToast();
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+    }
+    eliminarProducto(carrito)
+    actualizarCantidadPorInput(carrito)
+}
+
 function listenerAgregarACarrito(productos){
     productos.forEach((producto) =>{
         const botonAgregarACarrito = document.getElementById(`producto${producto.id}`).lastElementChild.lastElementChild
@@ -97,22 +149,10 @@ function listenerAgregarACarrito(productos){
                 precioTotal: 0
             }
             if(carrito.some(productoEnCarrito => productoEnCarrito.id === productoSeleccionado.id)){
-                añadirProductoExistenteACarrito(productoSeleccionado)
+                añadirProductoExistenteACarrito(productos, productoSeleccionado)
             }else{
-                añadirProductoNuevoACarrito(productoSeleccionado)
+                añadirProductoNuevoACarrito(productos, productoSeleccionado)
             }
-            Toastify({
-                text: "Producto agregado al carrito",
-                duration: 2000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                stopOnFocus: true,
-                style: {
-                    color: "black",
-                    background: "linear-gradient(to top, #ffb3d3, #ffc2dc)",
-                },
-            }).showToast();
         })
     })
 }
@@ -143,8 +183,6 @@ function imprimirListaDeProductos(productos){
         `
     })
     listenerAgregarACarrito(productos)
-    actualizarCantidadPorInput(carrito)
-    eliminarProducto(carrito)
 }
 function busquedaDeProductos(inputBusqueda, productos){
     let resultadosDeBusqueda = productos.filter((producto) => producto.nombre.includes(inputBusqueda.toLowerCase()))
