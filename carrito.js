@@ -72,6 +72,32 @@ function cargarCarritoLocal(){
 }
 cargarCarritoLocal()
 botonFinalizarCompra.addEventListener("click", () => {
-    console.log("hola")
+    if(carrito.length <= 0){
+        Swal.fire({
+            title: 'El carrito está vacío',
+            showConfirmButton: false,
+            showCancelButton: true,
+            cancelButtonText: `Añadir productos`,
+            cancelButtonColor: '#FF8AF1',
+        })
+    }else{
+        Swal.fire({
+            icon: 'info',
+            title: '¿Estás listo para que te lleguen tus productos?',
+            showDenyButton: true,
+            confirmButtonText: 'Finalizar compra',
+            denyButtonText: `Seguir comprando`,
+            confirmButtonColor: "#EA46C2",
+            denyButtonColor: '#FF8AF1',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('¡Compra finalizada!', 'La factura será enviada al email, gracias por tu compra!', 'success')
+                carrito = []
+                localStorage.setItem("carrito", JSON.stringify(carrito))
+                divCarritoDeCompras.innerHTML = ""
+                actualizarTotalDeCarrito(carrito)
+            }
+        })
+    }
 })
 export {carrito, divCarritoDeCompras};
