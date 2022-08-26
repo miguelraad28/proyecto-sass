@@ -247,6 +247,7 @@ footer {
   padding: 0px 20px 5px 20px; }
 
 .offcanvas-footer {
+  min-height: 99px;
   font-size: 1.22em;
   font-family: "Quicksand", "Lato", "Open Sans", sans-serif;
   display: flex;
