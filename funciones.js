@@ -110,11 +110,10 @@ function añadirProductoExistenteACarrito(productoSeleccionado){
         localStorage.setItem("carrito", JSON.stringify(carrito))
     }
 }
-function añadirProductoNuevoACarrito(productoSeleccionado){
-    if(productoSeleccionado.stock <= 0){
+function añadirProductoNuevoACarrito(productoEnCarrito){
+    if(productoEnCarrito.stock <= 0){
         noHayMasEnStock()
     }else{
-        let productoEnCarrito = productoSeleccionado
         actualizarProductoEnCarrito(productoEnCarrito)
         carrito.push(productoEnCarrito)
         divCarritoDeCompras.innerHTML += `
